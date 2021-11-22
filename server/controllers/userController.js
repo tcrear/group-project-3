@@ -1,4 +1,7 @@
 const { User } = require('../models');
+// const withAuth = require("../../utils/auth");
+const router = require("express").Router();
+
 
 //logoutUser, createNewUser, addNewGame, updateGame, deleteGame
 
@@ -30,8 +33,30 @@ module.exports = {
     } catch (err) {
       res.status(400).json(err);
     }
-  }
+  },
 
+  async logoutUser (req,res) {
+
+  },
+
+  async createNewUser (req, res) {
+    console.log(req)
+    res.json('done')
+  },
+
+  async addNewGame (req, res) {
+    console.log(req)
+    res.json('done')
+  },
+  
+  async updateGame (req, res) {
+
+  },
+  
+  async deleteGame (req, res) {
+
+  },
+  
   // async createProduct({ body }, res) {
   //   const product = await Product.create(body);
 
