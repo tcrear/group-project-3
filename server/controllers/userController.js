@@ -21,11 +21,6 @@ module.exports = {
         return;
       }
   
-      // req.session.save(() => {   //are we still going to use session 
-      //   req.session.user_id = userData.id;
-      //   req.session.username = userData.username;
-      //   req.session.logged_in = true;
-      // });
       res.json({ user: userData, message: "You are now logged in!" });
 
     } catch (err) {
@@ -34,13 +29,8 @@ module.exports = {
   },
 
   async logoutUser (req,res) {
-      if (req.session.logged_in) {
-        req.session.destroy(() => {
-          res.status(204).end();
-        });
-      } else {
-        res.status(404).end();
-      }
+      console.log('logout?')
+      res.json({message: 'logout code here'})
   },
 
   async createNewUser (req, res) {
@@ -51,14 +41,7 @@ module.exports = {
       if(!userData){
         return res.status(400).json({message: "Unable to create new user"})
       }
-      console.log(userData)
-      console.log('-------------------')
-      // req.session.save(() => {
-      //   req.session.user_id = userData._id;
-      //   req.session.username = userData.username;
-      //   req.session.logged_in = true;
-      //   console.log(userData)
-      // })
+    
       res.status(200).json(userData)
 
     } catch (err){
@@ -68,12 +51,18 @@ module.exports = {
   },
 
   async addNewGame (req, res) {
-    console.log(req) //onWishlist true
-    res.json('done')
+    //req body expected to have id (rawgid), title, onWishList true/false
+    const addedGame = await User.update({_id: req.params.id}, {$push: {savedGames: req.body}})
+
+    console.log(addedGame) //onWishlist true
+    res.json(addedGame)
   },
   
   async updateGame (req, res) {
+    //req.body expected to have id from mongo, onWishList false
+    const updatedGame = await User.update({_id: req.params.id}, {$set: {"savedGames.$[onWishList]": req.body.onWishList}}, {arrayFilters: [{_id: req.body.id}]})
 
+    res.json(updatedGame)
   },
   
   async deleteGame (req, res) {
