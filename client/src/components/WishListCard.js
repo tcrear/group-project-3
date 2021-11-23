@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-function WishList() {
+function WishListCard() {
   return (
     <Card xs={1} md={2} className="g-4">
       <CardMedia component="img" alt="game cover" height="140" image="" />
@@ -26,4 +26,4 @@ function WishList() {
   );
 }
 
-export default WishList;
+export default WishListCard;
