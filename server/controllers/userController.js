@@ -51,55 +51,31 @@ module.exports = {
   },
 
   async addNewGame (req, res) {
-    //req body expected to have id (rawgid), title, onWishList true/false
-    const addedGame = await User.update({_id: req.params.id}, {$push: {savedGames: req.body}})
+    try {
+      //req body expected to have id (rawgid), title, onWishList true/false
+      const addedGame = await User.update({_id: req.params.id}, {$push: {savedGames: req.body}})
 
-    console.log(addedGame) //onWishlist true
-    res.json(addedGame)
+      res.json(addedGame)
+    } catch (err){
+      res.status(400).json(err)
+    }
   },
   
-  async updateGame (req, res) {
+  async updateGame (req, res) {  //NOT working yet
     //req.body expected to have id from mongo, onWishList false
-    const updatedGame = await User.update({_id: req.params.id}, {$set: {"savedGames.$[onWishList]": req.body.onWishList}}, {arrayFilters: [{_id: req.body.id}]})
+    const updatedGame = await User.update({_id: req.params.id}, {$set: {"savedGames.$[_id: req.body.id].onWishList" : req.body.onwishList}})
 
     res.json(updatedGame)
   },
   
   async deleteGame (req, res) {
+    try {
+      const deletedGame = await User.update({_id: req.params.id}, {$pull: {savedGames: {_id: req.body.id}}})
 
+      res.json(deletedGame)
+    } catch (err){
+      res.status(400).json(err)
+    }
   },
   
-  // async createProduct({ body }, res) {
-  //   const product = await Product.create(body);
-
-  //   if (!product) {
-  //     return res.status(400).json({ message: 'Unable to create Product' });
-  //   }
-
-  //   res.status(200).json(product);
-  // },
-
-  // async updateProduct(req, res) {
-  //   const product = await Product.findOneAndUpdate(
-  //     { _id: req.params.id },
-  //     req.body,
-  //     { new: true }
-  //   );
-
-  //   if (!product) {
-  //     return res.status(400).json({ message: 'Unable to update Product' });
-  //   }
-
-  //   res.status(200).json(product);
-  // },
-
-  // async getAllProducts(req, res) {
-  //   const allProducts = await Product.find({});
-
-  //   if (!allProducts) {
-  //     return res.status(400).json({ message: 'No products found' });
-  //   }
-
-  //   res.status(200).json(allProducts);
-  // }
 };
