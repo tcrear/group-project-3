@@ -1,9 +1,12 @@
 import './App.css';
-import Footer from './components/Footer';
+import WishList from './components/WishList';
+// import Footer from './components/Footer';
 
 function App() {
   return (
-    <Footer />
+
+    <WishList />
+    // <Footer />
   );
 }
 
