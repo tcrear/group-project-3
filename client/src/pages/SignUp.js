@@ -4,7 +4,7 @@ export default class SignUp extends Component {
     render() {
         return (
             <form>
-                <h3>Register</h3>
+                <h3>Sign Up</h3>
 
                 <div className="form-group">
                     <label>Username</label>

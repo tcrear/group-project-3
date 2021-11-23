@@ -9,7 +9,7 @@ export default class Login extends Component {
 
                 <div className="form-group">
                     <label>Email</label>
-                    <input type="text" className="form-control" placeholder="Enter user name" />
+                    <input type="text" className="form-control" placeholder="Enter username" />
                 </div>
 
                 <div className="form-group">
@@ -17,7 +17,7 @@ export default class Login extends Component {
                     <input type="password" className="form-control" placeholder="Enter password" />
                 </div>
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in</button>
+                <button type="submit" className="btn btn-dark btn-lg btn-block">Log in</button>
 
             </form>
             
