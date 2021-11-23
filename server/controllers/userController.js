@@ -24,7 +24,7 @@ module.exports = {
         return;
       }
   
-      req.session.save(() => {
+      req.session.save(() => {   //are we still going to use session 
         req.session.user_id = userData.id;
         req.session.username = userData.username;
         req.session.logged_in = true;
@@ -36,7 +36,13 @@ module.exports = {
   },
 
   async logoutUser (req,res) {
-
+      if (req.session.logged_in) {
+        req.session.destroy(() => {
+          res.status(204).end();
+        });
+      } else {
+        res.status(404).end();
+      }
   },
 
   async createNewUser (req, res) {
