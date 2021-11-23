@@ -1,5 +1,6 @@
 import './App.css';
 // import WishList from './components/WishListCard';
+// import GameCards from './components/MyGamesCard';
 
 import Footer from './components/Footer';
 import Login from './pages/Login';
