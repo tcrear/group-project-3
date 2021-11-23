@@ -1,9 +1,6 @@
 const { User } = require('../models');
 // const withAuth = require("../../utils/auth");
-const router = require("express").Router();
-
-
-//logoutUser, createNewUser, addNewGame, updateGame, deleteGame
+const bcrypt = require('bcrypt')
 
 module.exports = {
   async loginUser (req, res) {
@@ -16,7 +13,7 @@ module.exports = {
         return;
       }
   
-      const validPassword = await userData.checkPassword(req.body.password);
+      const validPassword = await userData.comparePassword(req.body.password);
       if (!validPassword) {
         res
           .status(400)
@@ -24,12 +21,13 @@ module.exports = {
         return;
       }
   
-      req.session.save(() => {   //are we still going to use session 
-        req.session.user_id = userData.id;
-        req.session.username = userData.username;
-        req.session.logged_in = true;
-        res.json({ user: userData, message: "You are now logged in!" });
-      });
+      // req.session.save(() => {   //are we still going to use session 
+      //   req.session.user_id = userData.id;
+      //   req.session.username = userData.username;
+      //   req.session.logged_in = true;
+      // });
+      res.json({ user: userData, message: "You are now logged in!" });
+
     } catch (err) {
       res.status(400).json(err);
     }
@@ -46,12 +44,31 @@ module.exports = {
   },
 
   async createNewUser (req, res) {
-    console.log(req)
-    res.json('done')
+    try {
+      req.body.password = await bcrypt.hash(req.body.password, 10);
+      const userData = await User.create(req.body);
+
+      if(!userData){
+        return res.status(400).json({message: "Unable to create new user"})
+      }
+      console.log(userData)
+      console.log('-------------------')
+      // req.session.save(() => {
+      //   req.session.user_id = userData._id;
+      //   req.session.username = userData.username;
+      //   req.session.logged_in = true;
+      //   console.log(userData)
+      // })
+      res.status(200).json(userData)
+
+    } catch (err){
+      res.status(400).json(err)
+    }
+    
   },
 
   async addNewGame (req, res) {
-    console.log(req)
+    console.log(req) //onWishlist true
     res.json('done')
   },
   

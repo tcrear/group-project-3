@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const { loginUser, logoutUser, createNewUser, addNewGame, updateGame, deleteGame } = require('../../controllers/userController');
 
+///api/user
 router.route('/login').get(loginUser)
 router.route('/logout').get(logoutUser);
 router.route('/').post(createNewUser);
