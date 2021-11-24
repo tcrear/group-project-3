@@ -52,8 +52,14 @@ module.exports = {
 
   async addNewGame (req, res) {
     try {
+      let addedGame;
       //req body expected to have id (rawgid), title, onWishList true/false
-      const addedGame = await User.update({_id: req.params.id}, {$push: {savedGames: req.body}})
+      if(req.body.onWishList){
+        addedGame = await User.update({_id: req.params.id}, {$push: {savedGames: req.body}})
+      } else {
+        addedGame = await User.update({_id: req.params.id}, {$push: {wishList: req.body}})
+      }
+      
 
       res.json(addedGame)
     } catch (err){
@@ -61,16 +67,40 @@ module.exports = {
     }
   },
   
-  async updateGame (req, res) {  //NOT working yet
+  async updateGame (req, res) {  
     //req.body expected to have id from mongo, onWishList false
-    const updatedGame = await User.update({_id: req.params.id}, {$set: {"savedGames.$[_id: req.body.id].onWishList" : req.body.onwishList}})
+    try {
+      let removedGame;
+      let addedGame;
+      //req body expected to have id (rawgid), title, onWishList true/false
+      if(req.body.onWishList){
+        console.log('---------------------move to saved games------------')
+        addedGame = await User.findByIdAndUpdate({_id: req.params.id}, {$push: {savedGames: {_id: req.body.id}}})
+        removedGame = await User.findByIdAndUpdate({_id: req.params.id}, {$pull: {wishList: {_id: req.body.id}}})
+        console.log(addedGame)
+        console.log(removedGame)
+      } else {
+        console.log('-------------------moved to wishlist ------------------')
+        addedGame = await User.findByIdAndUpdate({_id: req.params.id}, {$push: {wishList: {_id: req.body.id}}})
+        removedGame = await User.findByIdAndUpdate({_id: req.params.id}, {$pull: {savedGames: {_id: req.body.id}}})
+      }
 
-    res.json(updatedGame)
+      res.json(addedGame)
+    } catch (err){
+      res.status(400).json(err)
+    }
+
   },
   
   async deleteGame (req, res) {
     try {
-      const deletedGame = await User.update({_id: req.params.id}, {$pull: {savedGames: {_id: req.body.id}}})
+      let deletedGame;
+      //req body expected to have id (rawgid), title, onWishList true/false
+      if(req.body.onWishList){
+        deletedGame = await User.update({_id: req.params.id}, {$pull: {savedGames: {_id: req.body.id}}})
+      } else {
+        deletedGame = await User.update({_id: req.params.id}, {$pull: {wishList: {_id: req.body.id}}})
+      }
 
       res.json(deletedGame)
     } catch (err){
