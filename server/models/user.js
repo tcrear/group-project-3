@@ -45,8 +45,6 @@ return newUserData;
 };
 
 UserSchema.methods.comparePassword = async function (loginPw) {
-  console.log(this.password)
-  console.log(loginPw)
   return bcrypt.compareSync(loginPw, this.password)
 }
 
