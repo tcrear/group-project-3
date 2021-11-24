@@ -24,9 +24,13 @@ const UserSchema = new Schema({
   },
 
   savedGames: [{
-    id: Number,
+    rawgId: Number,
     title: String,
-    onWishList: Boolean,
+  }],
+
+  wishList: [{
+    rawgId: Number,
+    title: String,
   }],
 
   userCreated: {
