@@ -16,10 +16,10 @@ let getGames = function (user) {
 
 function Footer(){
     return (
-        <footer>
+        <div>
             <p>This site uses the RAWG api for all information presented</p>
             <a href='https://rawg.io/'>https://rawg.io/</a>
-        </footer>
+        </div>
     );
 }
 

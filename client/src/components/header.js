@@ -1,12 +1,14 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 import "../css/header.css";
 
-function Header() {
-    return (
-      <Header className="header">
-        <h1>Welcome to GamerShelf </h1>
-      </Header>
-    );
-  }
+const Header = () => {
+  return (
+    <div>
+      <h1>Welcome to GamerShelf </h1>
+      <Link to="MyGames">MyGames</Link>
+    </div>
+  )
+};
   
   export default Header;
