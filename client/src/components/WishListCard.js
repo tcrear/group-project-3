@@ -2,7 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 
-function WishList() {
+function WishListCard(props) {
   return (
     <CardGroup>
   <Card>
@@ -46,4 +46,4 @@ function WishList() {
   )
 }
 
-export default WishList;
+export default WishListCard;
