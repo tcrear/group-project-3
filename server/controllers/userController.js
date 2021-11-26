@@ -1,5 +1,6 @@
 const { User } = require('../models');
 // const withAuth = require("../../utils/auth");
+const { signToken } = require('../utils/auth.js')
 const bcrypt = require('bcrypt')
 
 module.exports = {
@@ -20,8 +21,10 @@ module.exports = {
           .json({ message: "Incorrect email or password, please try again" });
         return;
       }
+
+      const token = signToken(userData)
   
-      res.json({ user: userData, message: "You are now logged in!" });
+      res.json({ savedGames: userData.savedGames, wishList: userData.wishList, token: token, message: "You are now logged in!" });
 
     } catch (err) {
       res.status(400).json(err);
@@ -41,13 +44,25 @@ module.exports = {
       if(!userData){
         return res.status(400).json({message: "Unable to create new user"})
       }
+
+      const token = signToken(userData)
     
-      res.status(200).json(userData)
+      res.status(200).json({ savedGames: userData.savedGames, wishList: userData.wishList, token: token})
 
     } catch (err){
       res.status(400).json(err)
     }
     
+  },
+
+  async getGames (req, res) {
+    try{
+      const gameData = await User.findOne({ where: { _id: req.params.id } });
+      const myGames = {savedGames: gameData.savedGames, wishList: gameData.wishList}
+      res.json(myGames)
+    } catch (err) {
+      res.status(400).json(err);
+    }
   },
 
   async addNewGame (req, res) {
