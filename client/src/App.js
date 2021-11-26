@@ -16,9 +16,9 @@ function App() {
       <Header/>
       <Routes>
         <Route exact path='/' element={<Homepage/>}/>
-        <Route exact path='/MyGames' elemtent={<MyGames/>}/>
+        <Route exact path='/MyGames' element={<MyGames/>}/>
         <Route exact path='/WishList' element={<WishList/>}/>
-        <Route exact path='/SingleGame' elemtent={<SingleGame/>}/>
+        <Route exact path='/SingleGame' element={<SingleGame/>}/>
         <Route exact path='/Login' element={<Login/>}/>
         <Route exact path='/SignUp' element={<SignUp/>}/> 
       </Routes>
