@@ -1,0 +1,23 @@
+.header{
+  display: flex;
+  outline: 1px solid red;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerLinks{
+  display: flex;
+  width: 40%;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+
+.homeLink{
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  height: 60px;
+}

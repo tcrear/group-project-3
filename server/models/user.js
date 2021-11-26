@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require('bcrypt')
 
 const Schema = mongoose.Schema;
 
@@ -23,9 +24,13 @@ const UserSchema = new Schema({
   },
 
   savedGames: [{
-    id: Number,
+    rawgId: Number,
     title: String,
-    onWishList: Boolean,
+  }],
+
+  wishList: [{
+    rawgId: Number,
+    title: String,
   }],
 
   userCreated: {
@@ -33,6 +38,15 @@ const UserSchema = new Schema({
     default: Date.now
   }
 });
+
+UserSchema.methods.encryptPassword = async function (newUserData) {
+newUserData.password = await bcrypt.hash(newUserData.password, 10);
+return newUserData;
+};
+
+UserSchema.methods.comparePassword = async function (loginPw) {
+  return bcrypt.compareSync(loginPw, this.password)
+}
 
 const User = mongoose.model("User", UserSchema);
 

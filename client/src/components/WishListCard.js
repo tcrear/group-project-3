@@ -46,4 +46,6 @@ function WishListCard(props) {
   )
 }
 
+
 export default WishListCard;
+

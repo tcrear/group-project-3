@@ -8,6 +8,7 @@ function GameCards(props) {
   <Card>
     <Card.Img variant="top" src="holder.js/100px160" />
     <Card.Body>
+      {/* needs to be props */}
       <Card.Title>Game Title :D</Card.Title>
       <Card.Text>
        User rating
