@@ -55,12 +55,19 @@ module.exports = {
       let addedGame;
       //req body expected to have id (rawgid), title, onWishList true/false
       if(req.body.onWishList){
-        addedGame = await User.update({_id: req.params.id}, {$push: {wishList: req.body}})
+        addedGame = await User.update(
+          {_id: req.params.id}, 
+          {$push: {wishList: req.body}},
+          { new: true }
+          )
       } else {
-        addedGame = await User.update({_id: req.params.id}, {$push: {savedGames: req.body}})
+        addedGame = await User.update(
+          {_id: req.params.id}, 
+          {$push: {savedGames: req.body}},
+          { new: true }
+          )
       }
       
-
       res.json(addedGame)
     } catch (err){
       res.status(400).json(err)
