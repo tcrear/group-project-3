@@ -1,7 +1,7 @@
 export const loginUser = (userData) => { //userData -> email, password
   return fetch('/api/user/login', {
     method: 'GET',
-    body: userData,
+    body: JSON.stringify(userData),
     headers: {
       'Content-Type': 'application/json',
     }
@@ -11,7 +11,7 @@ export const loginUser = (userData) => { //userData -> email, password
 export const logoutUser = (userData) => {
   // return fetch('/api/user/logout', {
   //   method: 'GET',
-  //   body: userData,
+  //   body: JSON.stringify(userData),
   //   headers: {
   //     'Content-Type': 'application/json',
   //   }
@@ -21,7 +21,7 @@ export const logoutUser = (userData) => {
 export const createUser = (userData) => { //userData -> username, email, password
   return fetch('/api/user/', {
     method: 'POST',
-    body: userData,
+    body: JSON.stringify(userData),
     headers: {
       'Content-Type': 'application/json',
     }
@@ -31,7 +31,7 @@ export const createUser = (userData) => { //userData -> username, email, passwor
 export const addGame = (gameData) => {  //gameData -> rawgId, title, onWishList
   return fetch('/api/user/:id', {
     method: 'POST',
-    body: gameData,
+    body: JSON.stringify(gameData),
     headers: {
       'Content-Type': 'application/json',
     }
@@ -41,7 +41,7 @@ export const addGame = (gameData) => {  //gameData -> rawgId, title, onWishList
 export const updateGame = (gameData) => {  //gameData -> rawgId, title, onWishList
   return fetch('/api/user/:id', {
     method: 'PUT',
-    body: gameData,
+    body: JSON.stringify(gameData),
     headers: {
       'Content-Type': 'application/json',
     }
@@ -51,7 +51,7 @@ export const updateGame = (gameData) => {  //gameData -> rawgId, title, onWishLi
 export const deleteGame = (gameData) => {  //gameData -> rawgId, onWishList
   return fetch('/api/user/:id', {
     method: 'DELETE',
-    body: gameData,
+    body: JSON.stringify(gameData),
     headers: {
       'Content-Type': 'application/json',
     }
