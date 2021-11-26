@@ -1,9 +1,10 @@
-
+import MyGamesCard from '../components/MyGamesCard'
 
 function MyGames(){
   return(
     <>
-    <p>my games page</p>
+      <p>my games page</p>
+      <MyGamesCard/>
     </>
   )
 };

@@ -2,3 +2,16 @@
 a {
   text-decoration: none;
 }
+
+.content{
+  min-height: 85vh;
+  height: auto !important;
+  height: 85vh;
+  margin: 0 auto -50px;
+  position: relative;
+  outline: 1px solid green;
+}
+
+.push, footer{
+  height: 50px !important; 
+}

@@ -1,4 +1,3 @@
-import React from "react";
 import {Link} from 'react-router-dom';
 import "../css/header.css";
 import logo from "./images/bookshelf128.png";
@@ -7,7 +6,7 @@ const Header = () => {
   return (
     <div className="header">
       <Link className="homeLink" to="/">
-        <img className="logoImage" src={logo}/>
+        <img className="logoImage" src={logo} alt="Bookshelf Logo"/>
         <h1>GamerShelf </h1>
         </Link>
       <div className="headerLinks">

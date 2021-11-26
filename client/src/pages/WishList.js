@@ -1,7 +1,10 @@
+import WishListCard from '../components/WishListCard'
+
 function WishList(){
   return(
     <>
-    <p>wish list page</p>
+      <p>wish list page</p>
+      <WishListCard/>
     </>
   )
 };
