@@ -4,9 +4,12 @@ import "../css/header.css";
 
 const Header = () => {
   return (
-    <div>
+    <div className="header">
       <h1>Welcome to GamerShelf </h1>
-      <Link to="MyGames">MyGames</Link>
+      <Link className="headerLink" to="MyGames">My Games</Link>
+      <Link className="headerLink" to="WishList">Wish List</Link>
+      <Link className="headerLink" to="Login">Login</Link>
+      <Link className="headerLink" to="SignUp">SignUp</Link>
     </div>
   )
 };

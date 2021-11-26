@@ -1,8 +1,8 @@
-function WishListPage(){
+function WishList(){
   return(
     <>
     <p>wish list page</p>
     </>
   )
 };
-export default WishListPage;
+export default WishList;
