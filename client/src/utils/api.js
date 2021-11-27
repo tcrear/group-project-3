@@ -18,15 +18,6 @@ export const logoutUser = (userData) => {
   // })
 };
 
-export const getGames = () => { // -> username, email, password
-  return fetch('/api/user/games/61a123c32b7efe6ecabc5fd5', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  })
-};
-
 export const createUser = (userData) => { //userData -> username, email, password
   return fetch('/api/user/', {
     method: 'POST',
