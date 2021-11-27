@@ -3,33 +3,17 @@ import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 
 function GameCards(props) {
+  const title = 'Game Title :D'
+  const rating = 'User rating'
   return (
     <CardGroup>
   <Card>
     <Card.Img variant="top" src="holder.js/100px160" />
     <Card.Body>
       {/* needs to be props */}
-      <Card.Title>Game Title :D</Card.Title>
+      <Card.Title>{title}</Card.Title>
       <Card.Text>
-       User rating
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
-    <Card.Body>
-      <Card.Title>Game Title :D</Card.Title>
-      <Card.Text>
-      User rating
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
-    <Card.Body>
-      <Card.Title>Game Title :D</Card.Title>
-      <Card.Text>
-      User rating
+       {rating}
       </Card.Text>
     </Card.Body>
   </Card>
