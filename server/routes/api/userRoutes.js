@@ -1,14 +1,10 @@
 const router = require('express').Router();
 
-const { loginUser, logoutUser, createNewUser, addNewGame, updateGame, deleteGame, getGames } = require('../../controllers/userController');
+const { loginUser, logoutUser, createNewUser } = require('../../controllers/userController');
 
 ///api/user
 router.route('/login').get(loginUser)
 router.route('/logout').get(logoutUser);
-router.route('/games/:id').get(getGames)
 router.route('/').post(createNewUser);
-router.route('/:id').post(addNewGame);
-router.route('/:id').put(updateGame)
-router.route('/:id').delete(deleteGame);
 
 module.exports = router;
