@@ -37,32 +37,45 @@ export const createUser = (userData) => { //userData -> username, email, passwor
   })
 };
 
-export const addGame = (gameData) => {  //gameData -> rawgId, title, onWishList
-  return fetch('/api/user/:id', {
+export const getGames = (token) => {  
+  return fetch('/api/game/:id', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    }
+  })
+};
+
+export const addGame = (token, gameData) => {  //gameData -> rawgId, title, onWishList
+  return fetch('/api/game/:id', {
     method: 'POST',
     body: JSON.stringify(gameData),
     headers: {
       'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
     }
   })
 };
 
-export const updateGame = (gameData) => {  //gameData -> rawgId, title, onWishList
-  return fetch('/api/user/:id', {
+export const updateGame = (token, gameData) => {  //gameData -> rawgId, title, onWishList
+  return fetch('/api/game/:id', {
     method: 'PUT',
     body: JSON.stringify(gameData),
     headers: {
       'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
     }
   })
 };
 
-export const deleteGame = (gameData) => {  //gameData -> rawgId, onWishList
-  return fetch('/api/user/:id', {
+export const deleteGame = (token, gameData) => {  //gameData -> rawgId, onWishList
+  return fetch('/api/game/:id', {
     method: 'DELETE',
     body: JSON.stringify(gameData),
     headers: {
       'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
     }
   })
 };
