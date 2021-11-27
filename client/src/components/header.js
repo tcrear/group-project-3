@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
 import "../css/header.css";
 import logo from "./images/bookshelf128.png";
+import Auth from '../utils/auth';
 
 const Header = () => {
   return (
@@ -10,10 +11,19 @@ const Header = () => {
         <h1>GamerShelf </h1>
         </Link>
       <div className="headerLinks">
-        <Link className="headerLink" to="MyGames">My Games</Link>
-        <Link className="headerLink" to="WishList">Wish List</Link>
-        <Link className="headerLink" to="Login">Login</Link>
-        <Link className="headerLink" to="SignUp">SignUp</Link>
+        {Auth.loggedIn() ? (
+          <>
+            <Link className="headerLink" to="MyGames">My Games</Link>
+            <Link className="headerLink" to="WishList">Wish List</Link>
+            <Link className="headerLink" onClick={Auth.logout}>LogOut</Link>
+          </>
+        ) : (
+          <>
+            <Link className="headerLink" to="Login">Login</Link>
+            <Link className="headerLink" to="SignUp">SignUp</Link>
+          </>
+        )}
+        
       </div>
     </div>
   )
