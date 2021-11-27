@@ -7,7 +7,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Homepage from './pages/Homepage';
 import MyGames from './pages/MyGames';
 import SingleGame from './pages/SingleGame';
-import Header from './components/Header';
+import Header from './components/header';
 
 function App() {
   return (
