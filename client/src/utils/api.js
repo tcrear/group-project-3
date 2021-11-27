@@ -1,6 +1,6 @@
 export const loginUser = (userData) => { //userData -> email, password
   return fetch('/api/user/login', {
-    method: 'GET',
+    method: 'POST',
     body: JSON.stringify(userData),
     headers: {
       'Content-Type': 'application/json',
