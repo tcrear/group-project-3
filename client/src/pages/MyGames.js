@@ -1,5 +1,6 @@
 import react, {useState, useEffect} from 'react';
 import MyGamesCard from '../components/MyGamesCard'
+import {getGames} from '../utils/api';
 
 function GameList() {
   const [game, setGame] = useState([]);
@@ -53,13 +54,13 @@ function GameList() {
   return (
     <div>
       <h1>My Games List</h1>
-      <GameListCard
+      <div
         game={game}
         onSubmit={addGameListItem}
         playedGameItem={playedGameItem}
         removeGameListItem={removeGameListItem}
         editGameListItem={editGameListItem}
-      ></GameListCard>
+      ></div>
     </div>
   );
 }
