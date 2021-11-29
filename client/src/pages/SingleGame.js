@@ -29,27 +29,21 @@ function SingleGame(props) {
             }
         })
   };
-  
+  console.log(rawgDetails)
   useEffect(() => {
     getDetails(id)
   }, [])
-
-  return (
-    <CardGroup>
-      <Card>
-        <Card.Title>{title}</Card.Title>
-        <Card.Img variant="top" src="holder.js/100px160" />
-        <Card.Body>
-          {/* needs to be props */}
-          <Card.Text>
-            {genres}
-            {rating}
-            {released}
-            {esrb_rating}
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    </CardGroup>
+ 
+  return(
+    <>
+    {rawgDetails ? (
+    <div>
+      <img src={rawgDetails.background_image} height='500px'/>
+      {console.log(rawgDetails)}
+      <h2>{rawgDetails.name}</h2>
+    </div>
+    ):<p>not ready my dude</p>}
+    </>
   )
 }
 
