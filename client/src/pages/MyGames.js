@@ -1,27 +1,23 @@
 import react, {useState, useEffect} from 'react';
 import MyGamesCard from '../components/MyGamesCard'
 import {getGames} from '../utils/api';
+import Auth from '../utils/auth';
 
 function GameList() {
   const [game, setGame] = useState([]);
+
   useEffect(() => {
-    console.log(JSON.stringify(getGames()))
+    savedGamesData()
   })
-  const addGameListItem = (item) => {
-    console.log(
-      'added item I think??',
-      item
-    );
+  
+  const savedGamesData = async() => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!item.text) {
-      return;
-    }
+    const response = await getGames(token)
+    const {savedGames} = await response.json()
+    setGame(savedGames)
 
-    const newGame = [item, ...game];
-    console.log(newGame);
-
-    setGame(newGame);
-  };
+  }
 
   const playedGameItem = (id) => {
     // update API and my games page
@@ -45,26 +41,15 @@ function GameList() {
     setGame(updatedGameList);
   };
 
-  const editGameListItem = (itemId, newValue) => {
-    if (!newValue.text) {
-      return;
-    }
-
-    setGame((prev) =>
-    prev.map((item) => (item.id === itemId ? newValue : item))
-    );
-  };
-
   return (
     <div>
       <h1>My Games List</h1>
-      <div
+      <MyGamesCard
         game={game}
-        onSubmit={addGameListItem}
-        playedGameItem={playedGameItem}
-        removeGameListItem={removeGameListItem}
-        editGameListItem={editGameListItem}
-      ></div>
+        // onSubmit={addGameListItem}
+        // playedGameItem={playedGameItem}
+        // removeGameListItem={removeGameListItem}
+      ></MyGamesCard>
     </div>
   );
 }
