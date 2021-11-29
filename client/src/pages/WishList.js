@@ -2,43 +2,53 @@ import react, {useState, useEffect} from 'react';
 import { getGames } from '../utils/api';
 import CardGroup from 'react-bootstrap/CardGroup'
 import WishListCard from '../components/WishListCard';
+import Auth from '../utils/auth';
 
 function WishList() {
   const [wishItems, setWishItems] = useState([]);
 
   useEffect(() => {
-    console.log(JSON.stringify(getGames()))
+    getWishListData()
   })
   
-  const addWishListItem = (item) => {
-    console.log(
-      'added item I think??',
-      item
-    );
+  const getWishListData = async() => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!item.text) {
-      return;
-    }
+    const response = await getGames(token)
+    // setWishItems(response.wishList.json())
+    console.log(response.json())
+  }
 
-    const newWish = [item, ...wish];
-    console.log(newWish);
+  // const addWishListItem = (item) => {
+  //   console.log(
+  //     'added item I think??',
+  //     item
+  //   );
 
-    setWish(newWish);
-  };
+  //   if (!item.text) {
+  //     return;
+  //   }
+
+  //   const newWishItems = [item, ...wishItems];
+  //   console.log(newWishItems);
+
+  //   setWish(newWishItems);
+  // };
 
   // Moves a game from wished to played
   // remove from wish and add to games
   const setGameToPlayed = (id) => {
-    let updatedWishList = wish.map((item) => {
-      if (item._id === id) {
-        item.isComplete - !item.isComplete;
-        // item.status = "owned"
-      }
-      return item;
-    });
+    // let updatedWishList = wishItems.map((item) => {
+    //   if (item._id === id) {
+    //     item.isComplete - !item.isComplete;
+    //     // item.status = "owned"
+    //   }
+    //   return item;
+    // });
 
-    console.log(updatedWishList);
-    setWishItems(updatedWishList);
+    // console.log(updatedWishList);
+    // setWishItems(updatedWishList);
+    console.log("id")
   };
 
   // Removes a game from the wishlist
@@ -55,19 +65,11 @@ function WishList() {
           <WishListCard
             key={wish._id}
             wish={wish}
-            onSubmit={addWishListItem}
+            // onSubmit={addWishListItem}
             setGameToPlayed={setGameToPlayed}
             removeWishListItem={removeWishListItem}
-            editWishListItem={editWishListItem}
           />
         ))}
-        <WishListCard 
-          mode="edit"
-          onSubmit={addWishListItem}
-          setGameToPlayed={setGameToPlayed}
-          removeWishListItem={removeWishListItem}
-          editWishListItem={editWishListItem}
-        />
       </CardGroup>
     </div>
   );
