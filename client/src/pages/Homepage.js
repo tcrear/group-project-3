@@ -6,6 +6,7 @@ function Homepage(){
   const [renderReady, setRenderReady] = useState(false);
   const [successfullLogin, setSuccessfullLogin] = useState(false);
   const [userData, setUserData] = useState({});
+  const [ rawgData, setRawgData ] = useState([]);
  
   const getUserData = async() => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -31,6 +32,7 @@ function Homepage(){
             if (res.ok){
                 res.json().then(function(data){
                     console.log(data)
+                    setRawgData(data)
                 })
             }
         })
@@ -48,6 +50,10 @@ function Homepage(){
     e.preventDefault();
     getGames()
     console.log(search)
+  }
+  const renderSinglePage= (rawgId)=>{
+    window.location.assign(`/SingleGame/${rawgId}`)
+
   }
 
   return(
@@ -71,6 +77,22 @@ function Homepage(){
                 <button type='submit' onClick={handleSubmit}>Search</button>
             </form>
         </div>
+        {rawgData.results ? (
+        <>{rawgData.results.map(game =>{
+          return(
+          <div key={game.id} onClick={()=>renderSinglePage(game.id)}>
+            <img src={game.background_image} height='100px'/>
+            <h3>{game.name}</h3>
+            <p>metacritic score:{game.metacritic}</p>
+
+
+          </div>)
+        })}
+        </>)
+        : <p>no results...yet</p>
+      }
+        
+      
     </>
   )
 };
