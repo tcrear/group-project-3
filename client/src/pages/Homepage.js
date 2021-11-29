@@ -20,36 +20,7 @@ function Homepage(){
     console.log(userData)
   }
 
-  const getUserGames = async() => {
-    try {
-      const token = Auth.loggedIn() ? Auth.getToken() : null;
-      if(!token) {
-        setSavedGames(null);
-        setWishList(null);
-        return setRenderReady(true);
-      }
-
-      const response = await getGames(token);
-      if(!response.ok) {
-        setUserData(null);
-        return setRenderReady(true);
-      }
-
-      const games = await response.json();
-      console.log(games)
-      setSavedGames(games.savedGames);
-      setWishList(games.wishList);
-      setRenderReady(true);
-      console.log(savedGames)
-      console.log(wishList)
-
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
   useEffect(() => {
-    // getUserGames()
     getUserData()
   }, [])
 
