@@ -23,6 +23,7 @@ function GameList() {
   };
 
   const playedGameItem = (id) => {
+    // update API and my games page
     // games are currently playing too
     // once click, add review. Maybe add checkmark
 

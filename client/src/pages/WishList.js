@@ -27,6 +27,7 @@ function WishList() {
   };
 
   // Moves a game from wished to played
+  // remove from wish and add to games
   const setGameToPlayed = (id) => {
     let updatedWishList = wish.map((item) => {
       if (item._id === id) {
@@ -44,26 +45,6 @@ function WishList() {
   const removeWishListItem = (id) => {
     const updatedWishList = wishItems.filter((item) => item._id !== id);
     setWishItems(updatedWishList);
-  };
-
-  // Modifies a wished game
-  const editWishListItem = (wishObj) => {
-    if (!wishObj.text) {
-      return;
-    }
-
-    // clone the array of all wish items
-    const clonedList = [...wishItems]
-
-    // map over the array, find the id of the one that's being changed, and update that one
-    clonedList.map( wishItem => {
-      if( wishItem._id === wishedObj ){
-        wishItem = wishObj
-      }
-    })
-
-    // set the updated array of items
-    setWishItems(clonedList);
   };
 
   return (
