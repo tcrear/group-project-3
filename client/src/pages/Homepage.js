@@ -20,7 +20,6 @@ function Homepage(){
     console.log(userData)
   }
 
-  
   useEffect(() => {
     getUserData()
   }, [])
