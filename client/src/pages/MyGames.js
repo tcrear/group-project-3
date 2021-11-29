@@ -23,6 +23,9 @@ function GameList() {
   };
 
   const playedGameItem = (id) => {
+    // games are currently playing too
+    // once click, add review. Maybe add checkmark
+
     // let updatedGameList = game.map((item) => {
     //   if (item.id === id) {
     //     item.isComplete - !item.isComplete;
@@ -53,13 +56,13 @@ function GameList() {
   return (
     <div>
       <h1>My Games List</h1>
-      <GameListCard
+      <div
         game={game}
         onSubmit={addGameListItem}
         playedGameItem={playedGameItem}
         removeGameListItem={removeGameListItem}
         editGameListItem={editGameListItem}
-      ></GameListCard>
+      ></div>
     </div>
   );
 }

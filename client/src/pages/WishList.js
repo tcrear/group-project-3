@@ -1,12 +1,15 @@
 import react, {useState, useEffect} from 'react';
 import { getGames } from '../utils/api';
+import CardGroup from 'react-bootstrap/CardGroup'
 import WishListCard from '../components/WishListCard';
 
 function WishList() {
-  const [wish, setWish] = useState([]);
+  const [wishItems, setWishItems] = useState([]);
+
   useEffect(() => {
     console.log(JSON.stringify(getGames()))
   })
+  
   const addWishListItem = (item) => {
     console.log(
       'added item I think??',
@@ -23,44 +26,68 @@ function WishList() {
     setWish(newWish);
   };
 
-  const playedGameItem = (id) => {
-    // let updatedWishList = wish.map((item) => {
-    //   if (item.id === id) {
-    //     item.isComplete - !item.isComplete;
-    //   }
-    //   return item;
-    // });
+  // Moves a game from wished to played
+  const setGameToPlayed = (id) => {
+    let updatedWishList = wish.map((item) => {
+      if (item._id === id) {
+        item.isComplete - !item.isComplete;
+        // item.status = "owned"
+      }
+      return item;
+    });
 
-    // console.log(updatedWishList);
-    // setWish(updatedWishList);
+    console.log(updatedWishList);
+    setWishItems(updatedWishList);
   };
 
+  // Removes a game from the wishlist
   const removeWishListItem = (id) => {
-    const updatedWishList = [...wish].filter((item) => item.id !== id);
-
-    setWish(updatedWishList);
+    const updatedWishList = wishItems.filter((item) => item._id !== id);
+    setWishItems(updatedWishList);
   };
 
-  const editWishListItem = (itemId, newValue) => {
-    if (!newValue.text) {
+  // Modifies a wished game
+  const editWishListItem = (wishObj) => {
+    if (!wishObj.text) {
       return;
     }
 
-    setWish((prev) =>
-    prev.map((item) => (item.id === itemId ? newValue : item))
-    );
+    // clone the array of all wish items
+    const clonedList = [...wishItems]
+
+    // map over the array, find the id of the one that's being changed, and update that one
+    clonedList.map( wishItem => {
+      if( wishItem._id === wishedObj ){
+        wishItem = wishObj
+      }
+    })
+
+    // set the updated array of items
+    setWishItems(clonedList);
   };
 
   return (
     <div>
       <h1>Video game wishlist</h1>
-      <WishListCard
-        wish={wish}
-        onSubmit={addWishListItem}
-        playedGameItem={playedGameItem}
-        removeWishListItem={removeWishListItem}
-        editWishListItem={editWishListItem}
-      ></WishListCard>
+      <CardGroup>
+        { wishItems.map( wish => (
+          <WishListCard
+            key={wish._id}
+            wish={wish}
+            onSubmit={addWishListItem}
+            setGameToPlayed={setGameToPlayed}
+            removeWishListItem={removeWishListItem}
+            editWishListItem={editWishListItem}
+          />
+        ))}
+        <WishListCard 
+          mode="edit"
+          onSubmit={addWishListItem}
+          setGameToPlayed={setGameToPlayed}
+          removeWishListItem={removeWishListItem}
+          editWishListItem={editWishListItem}
+        />
+      </CardGroup>
     </div>
   );
 }
