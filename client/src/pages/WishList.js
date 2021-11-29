@@ -1,12 +1,23 @@
 import react, {useState, useEffect} from 'react';
 import { getGames } from '../utils/api';
 import WishListCard from '../components/WishListCard';
+import Auth from '../utils/auth'
 
 function WishList() {
   const [wish, setWish] = useState([]);
   useEffect(() => {
-    console.log(JSON.stringify(getGames()))
+    getGetGameData()
   })
+
+  const getGetGameData = async() => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    const response = await getGames(token)
+    const {wishList} = await response.json()
+    setWish(wishList)
+
+  }
+
   const addWishListItem = (item) => {
     console.log(
       'added item I think??',
@@ -41,16 +52,6 @@ function WishList() {
     setWish(updatedWishList);
   };
 
-  const editWishListItem = (itemId, newValue) => {
-    if (!newValue.text) {
-      return;
-    }
-
-    setWish((prev) =>
-    prev.map((item) => (item.id === itemId ? newValue : item))
-    );
-  };
-
   return (
     <div>
       <h1>Video game wishlist</h1>
@@ -59,7 +60,6 @@ function WishList() {
         onSubmit={addWishListItem}
         playedGameItem={playedGameItem}
         removeWishListItem={removeWishListItem}
-        editWishListItem={editWishListItem}
       ></WishListCard>
     </div>
   );

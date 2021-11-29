@@ -15,7 +15,7 @@ function WishListCard(props) {
     <Card.Body>
       <Card.Title>{props.title}</Card.Title>
       <Card.Text>
-       {props.text}
+       {props.wishList.text}
       </Card.Text>
     </Card.Body>
     <Card.Footer>

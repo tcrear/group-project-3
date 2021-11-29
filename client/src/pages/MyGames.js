@@ -5,7 +5,8 @@ import {getGames} from '../utils/api';
 function GameList() {
   const [game, setGame] = useState([]);
   useEffect(() => {
-    console.log(JSON.stringify(getGames()))
+    const getGame = getGames();
+    console.log(getGame)
   })
   const addGameListItem = (item) => {
     console.log(
@@ -41,26 +42,15 @@ function GameList() {
     setGame(updatedGameList);
   };
 
-  const editGameListItem = (itemId, newValue) => {
-    if (!newValue.text) {
-      return;
-    }
-
-    setGame((prev) =>
-    prev.map((item) => (item.id === itemId ? newValue : item))
-    );
-  };
-
   return (
     <div>
-      <h1>My Games List</h1>
+      {/* <h1>My Games List</h1>
       <div
         game={game}
         onSubmit={addGameListItem}
         playedGameItem={playedGameItem}
         removeGameListItem={removeGameListItem}
-        editGameListItem={editGameListItem}
-      ></div>
+      ></div> */}
     </div>
   );
 }
