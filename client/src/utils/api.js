@@ -65,8 +65,8 @@ export const updateGame = (token, gameData, userId) => {  //gameData -> rawgId, 
   })
 };
 
-export const deleteGame = (token, gameData) => {  //gameData -> rawgId, onWishList
-  return fetch('http://localhost:3001/api/game/:id', {
+export const deleteGame = (token, gameData, userId) => {  //gameData -> rawgId, onWishList
+  return fetch(`http://localhost:3001/api/game/${userId}`, {
     method: 'DELETE',
     body: JSON.stringify(gameData),
     headers: {
