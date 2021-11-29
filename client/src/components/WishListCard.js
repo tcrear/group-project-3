@@ -13,7 +13,7 @@ function WishListCard(props) {
         </Card.Body>
         <Card.Footer>
           <button className="btn btn-sm" onClick={() => props.setGameToPlayed(props.wish)}>Mark This Game As Played</button>
-          <button className="btn btn-sm" onClick={() => props.removeWishListItem(props.wish._id)}>Remove This Game</button>
+          <button className="btn btn-sm" onClick={() => props.removeWishListItem(props.wish)}>Remove This Game</button>
         </Card.Footer>
 
     </Card>

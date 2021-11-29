@@ -85,6 +85,7 @@ module.exports = {
       //req body expected to have id (rawgid), onWishList true/false
       if(req.body.onWishList){
         console.log('-----------------delete from wishlist---------------')
+        console.log(req.params.id, req.body.rawgId)
         deletedGame = await User.findOneAndUpdate(
           {_id: req.params.id}, 
           {$pull: {wishList: {rawgId: req.body.rawgId}}},
