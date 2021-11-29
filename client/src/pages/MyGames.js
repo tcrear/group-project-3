@@ -1,28 +1,23 @@
 import react, {useState, useEffect} from 'react';
 import MyGamesCard from '../components/MyGamesCard'
 import {getGames} from '../utils/api';
+import Auth from '../utils/auth';
 
 function GameList() {
   const [game, setGame] = useState([]);
+
   useEffect(() => {
-    const getGame = getGames();
-    console.log(getGame)
+    savedGamesData()
   })
-  const addGameListItem = (item) => {
-    console.log(
-      'added item I think??',
-      item
-    );
+  
+  const savedGamesData = async() => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!item.text) {
-      return;
-    }
+    const response = await getGames(token)
+    const {savedGames} = await response.json()
+    setGame(savedGames)
 
-    const newGame = [item, ...game];
-    console.log(newGame);
-
-    setGame(newGame);
-  };
+  }
 
   const playedGameItem = (id) => {
     // update API and my games page
@@ -48,13 +43,13 @@ function GameList() {
 
   return (
     <div>
-      {/* <h1>My Games List</h1>
-      <div
+      <h1>My Games List</h1>
+      <MyGamesCard
         game={game}
-        onSubmit={addGameListItem}
-        playedGameItem={playedGameItem}
-        removeGameListItem={removeGameListItem}
-      ></div> */}
+        // onSubmit={addGameListItem}
+        // playedGameItem={playedGameItem}
+        // removeGameListItem={removeGameListItem}
+      ></MyGamesCard>
     </div>
   );
 }
