@@ -16,10 +16,10 @@ function GameList() {
       return;
     }
 
-    const newWish = [item, ...game];
-    console.log(newWish);
+    const newGame = [item, ...game];
+    console.log(newGame);
 
-    setGame(newWish);
+    setGame(newGame);
   };
 
   const playedGameItem = (id) => {
@@ -52,7 +52,7 @@ function GameList() {
 
   return (
     <div>
-      <h1>Video game wishlist</h1>
+      <h1>My Games List</h1>
       <GameListCard
         game={game}
         onSubmit={addGameListItem}
