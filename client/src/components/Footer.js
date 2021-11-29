@@ -12,7 +12,7 @@ let getGames = function (user) {
             }
         })
   };
-  getGames()
+//   getGames()
 
 function Footer(){
     return (

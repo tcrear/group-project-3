@@ -1,21 +1,14 @@
 export const loginUser = (userData) => { //userData -> email, password
-  return fetch('/api/user/login', {
-    method: 'GET',
+  return fetch('http://localhost:3001/api/user/login', {
+    method: 'POST',
     body: JSON.stringify(userData),
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type'
     }
   })
-};
-
-export const logoutUser = (userData) => {
-  // return fetch('/api/user/logout', {
-  //   method: 'GET',
-  //   body: JSON.stringify(userData),
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   }
-  // })
 };
 
 export const createUser = (userData) => { //userData -> username, email, password
