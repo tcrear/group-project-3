@@ -6,9 +6,7 @@ function Homepage(){
   const [renderReady, setRenderReady] = useState(false);
   const [successfullLogin, setSuccessfullLogin] = useState(false);
   const [userData, setUserData] = useState({});
-  const [savedGames, setSavedGames] = useState([]);
-  const [wishList, setWishList] = useState([]);
-
+  
   const getUserData = async() => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if(!token) {
