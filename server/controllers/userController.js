@@ -6,14 +6,13 @@ const bcrypt = require('bcrypt')
 module.exports = {
   async loginUser (req, res) {
     try {
-      const userData = await User.findOne({ where: { email: req.body.email } });
+      const userData = await User.findOne({ email: req.body.email });
       if (!userData) {
         res
           .status(400)
           .json({ message: "Incorrect email or password, please try again" });
         return;
       }
-  
       const validPassword = await userData.comparePassword(req.body.password);
       if (!validPassword) {
         res
@@ -29,11 +28,6 @@ module.exports = {
     } catch (err) {
       res.status(400).json(err);
     }
-  },
-
-  async logoutUser (req,res) {
-      console.log('logout?')
-      res.json({message: 'logout code here'})
   },
 
   async createNewUser (req, res) {
