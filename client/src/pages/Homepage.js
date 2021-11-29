@@ -14,10 +14,9 @@ function Homepage(){
     }
 
     const response = await Auth.getProfile(token)
-
-    const user = await response;
-    setUserData(user.data)
-    console.log(userData)
+    setUserData(response)
+    setRenderReady(true)
+    setSuccessfullLogin(true)
   }
 
   useEffect(() => {
@@ -55,14 +54,13 @@ function Homepage(){
     <>
       {renderReady && (
         <>
-        { userData ? (
-          <>
-          <h3>You arent Logged in</h3>
-          </>
+        { successfullLogin ? (
+         <>
+         <h3>Hello, {userData.data.username}</h3>
+         </>
         ) : (
           <>
-          <h3> you are logged in</h3>
-          <p>Hello, {userData.username}</p>
+          <h3>You are not Logged in</h3>
           </>
         )}
         </>
