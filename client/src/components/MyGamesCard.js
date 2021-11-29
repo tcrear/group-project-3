@@ -3,17 +3,19 @@ import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 
 function GameCards(props) {
-  const title = 'Game Title :D'
-  const rating = 'User rating'
+  const [edit, setEdit] = useState({
+    title: '',
+    rating: ''
+  });
   return (
     <CardGroup>
   <Card>
     <Card.Img variant="top" src="holder.js/100px160" />
     <Card.Body>
       {/* needs to be props */}
-      <Card.Title>{title}</Card.Title>
+      <Card.Title>{props.title}</Card.Title>
       <Card.Text>
-       {rating}
+       {props.rating}
       </Card.Text>
     </Card.Body>
   </Card>
