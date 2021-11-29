@@ -18,7 +18,6 @@ function Homepage(){
       }
 
       const response = await getGames(token);
-
       if(!response.ok) {
         setUserData(null);
         return setRenderReady(true);
@@ -28,6 +27,8 @@ function Homepage(){
       setSavedGames(games.savedGames);
       setWishList(games.wishList);
       setRenderReady(true);
+      console.log(savedGames)
+      console.log(wishList)
 
     } catch (err) {
       console.error(err)

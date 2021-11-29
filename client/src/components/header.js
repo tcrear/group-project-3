@@ -15,7 +15,7 @@ const Header = () => {
           <>
             <Link className="headerLink" to="MyGames">My Games</Link>
             <Link className="headerLink" to="WishList">Wish List</Link>
-            <Link className="headerLink" onClick={Auth.logout}>LogOut</Link>
+            <Link className="headerLink" to="/" onClick={Auth.logout}>LogOut</Link>
           </>
         ) : (
           <>
