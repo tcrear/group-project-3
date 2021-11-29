@@ -1,4 +1,3 @@
-// see SignupForm.js for comments
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
@@ -17,11 +16,7 @@ const LoginForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(userFormData)
 
-    /* Here we call the loginUser method, passing in the form data. If 
-    the login is successful, we'll receive back a token as well as the 
-    user data. The Auth.login() method will add the token to localStorage. */
     try {
       const response = await loginUser(userFormData);
 
@@ -30,6 +25,7 @@ const LoginForm = () => {
       }
 
       const { token, user } = await response.json();
+      console.log('---------------')
       console.log(user)
       Auth.login(token);
     } catch (err) {
