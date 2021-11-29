@@ -1,5 +1,6 @@
 import react, {useState, useEffect} from 'react';
 import MyGamesCard from '../components/MyGamesCard'
+import {getGames} from '../utils/api';
 
 function GameList() {
   const [game, setGame] = useState([]);
