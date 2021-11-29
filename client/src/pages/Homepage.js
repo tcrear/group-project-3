@@ -8,6 +8,19 @@ function Homepage(){
   const [savedGames, setSavedGames] = useState([]);
   const [wishList, setWishList] = useState([]);
 
+  const getUserData = async() => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if(!token) {
+      return setRenderReady(true);
+    }
+
+    const response = await Auth.getProfile(token)
+
+    const user = await response;
+    setUserData(user.data)
+    console.log(userData)
+  }
+
   const getUserGames = async() => {
     try {
       const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -24,6 +37,7 @@ function Homepage(){
       }
 
       const games = await response.json();
+      console.log(games)
       setSavedGames(games.savedGames);
       setWishList(games.wishList);
       setRenderReady(true);
@@ -36,7 +50,8 @@ function Homepage(){
   }
 
   useEffect(() => {
-    getUserGames()
+    // getUserGames()
+    getUserData()
   }, [])
 
   return(
@@ -50,6 +65,7 @@ function Homepage(){
         ) : (
           <>
           <h3> you are logged in</h3>
+          <p>Hello, {userData.username}</p>
           </>
         )}
         </>
