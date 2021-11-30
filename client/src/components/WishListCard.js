@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import xmark from './images/x-mark.png';
 import checkoff from './images/check-mark.png';
 
-
 function WishListCard(props) {
 
   const style = {
@@ -12,8 +11,9 @@ function WishListCard(props) {
       margin: "10px",
       minWidth: "500px",
       height: "450px",
-      background: "#d7d7d7",
-      color: "#0a58ca"
+      background: "#E38185",
+      color: "#0a58ca",
+      boxShadow: "rgba(49, 49, 49, 49) 4px 4px 4px 4px"
     },
     ImgComponent:{
       height: "50%",
@@ -39,4 +39,3 @@ function WishListCard(props) {
   );
 }
 export default WishListCard;
-

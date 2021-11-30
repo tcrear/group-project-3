@@ -22,7 +22,6 @@ const style = {
   CardComponent:{
     margin: "10px",
     minWidth: "500px",
-    height: "450px",
     background: "#E38185",
     color: "#0a58ca",
     boxShadow: "rgba(49, 49, 49, 49) 4px 4px 4px 4px",
