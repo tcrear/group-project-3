@@ -95,8 +95,8 @@ function Homepage(){
         {rawgData.results ? (
           <>{rawgData.results.map(game =>{
               return(
-                <div key={game.id} onClick={()=>renderSinglePage(game.id)}>
-                  <div>
+                <div key={game.id}>
+                  <div onClick={()=>renderSinglePage(game.id)}>
                     <img src={game.background_image} height='100px'/>
                     <h3>{game.name}</h3>
                     <p>metacritic score:{game.metacritic}</p>
