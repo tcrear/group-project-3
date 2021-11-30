@@ -52,7 +52,7 @@ function WishList() {
   
   return (
     <div>
-      <h1>Video game wishlist</h1>
+      <h1 style={{fontFamily: '"Bungee", cursive'}}>Wishlist</h1>
       <CardGroup style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
         { wishItems.map( wish =>
         (

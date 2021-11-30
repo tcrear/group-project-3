@@ -20,7 +20,18 @@ function GameCards(props) {
       margin: "0 auto"
     },
     textTitle:{
-      textAlign: "center"
+      textAlign: "center",
+      fontFamily: '"Bungee", cursive',
+    },
+    button: {
+      textDecoration: 'none',
+      background: "rgb(215, 215, 215)",
+      color: 'rgb(129, 133, 227)',
+      fontWeight: 'bold',
+      borderRadius: '8px',
+      padding: '3px',
+      boxShadow: 'rgb(49, 49, 49) 4px 4px 4px',
+      fontFamily: '"Bungee", cursive'
     }
   }
 
@@ -31,12 +42,12 @@ function GameCards(props) {
         <Card.Title style={style.textTitle}>{props.gameItem.title}</Card.Title>
       </Card.Body>
       <Card.Footer>
-        {/* <button className="btn btn-sm" onClick={() => props.setGameToPlayed(props.wish)}>Mark This Game As Played</button> */}
         <a
+          style={style.button}
           className="btn btn-sm"
           onClick={() => props.removeGameListItem(props.gameItem.rawgId)}
         >
-          <img src={xmark} height='10px' alt="remove item"/>
+          <img src={xmark} height='20px' alt="remove item"/>
         </a>
       </Card.Footer>
     </Card>

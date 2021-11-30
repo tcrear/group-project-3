@@ -12,6 +12,7 @@ const style = {
   },
   noResults: {
     textAlign: "center",
+    fontFamily: '"Bungee", cursive',
   },
   list: {
     paddingBottom: "10px",
@@ -21,7 +22,7 @@ const style = {
   },
   CardComponent:{
     margin: "10px",
-    minWidth: "500px",
+    width: "400px",
     background: "#E38185",
     color: "#0a58ca",
     boxShadow: "rgba(49, 49, 49, 49) 4px 4px 4px 4px",
@@ -29,10 +30,34 @@ const style = {
   ImgComponent:{
     height: "50%",
     width: "50%",
-    margin: "0 auto",
   },
   textTitle:{
     textAlign: "center",
+  },
+  searchButton: {
+    textDecoration: 'none',
+    background: "rgb(129, 133, 227)",
+    color: 'rgb(215, 215, 215)',
+    fontWeight: 'bold',
+    borderRadius: '8px',
+    padding: '3px',
+    boxShadow: 'rgb(49, 49, 49) 4px 4px 4px',
+    margin: '0 10px'
+  },
+  button: {
+    textDecoration: 'none',
+    background: "rgb(215, 215, 215)",
+    color: 'rgb(129, 133, 227)',
+    fontWeight: 'bold',
+    borderRadius: '8px',
+    padding: '3px',
+    boxShadow: 'rgb(49, 49, 49) 4px 4px 4px',
+    margin: '0 10px'
+  },
+  centering: {
+    margin: '0 auto', 
+    display: 'flex', 
+    justifyContent: 'center'
   }
 }
 
@@ -123,30 +148,32 @@ function Homepage(){
        <div className='search'>
             <form style={style.search}>
                 <input type='text' value={search} placeholder='search for games' onChange={handleInputChange} name='searchGames'/>
-                <button type='submit' onClick={handleSubmit}>Search</button>
+                <button type='submit' style={style.searchButton} onClick={handleSubmit}>Search</button>
             </form>
         </div>
-        {rawgData.results ? (
-          <>{rawgData.results.map(game =>{
-            console.log(game)
-              return(
-                <div key={game.id} style={style.side} style={style.CardComponent}>
-                  <div onClick={()=>renderSinglePage(game.id)}>
-                    <img style={style.ImgComponent} src={game.background_image} height='100px'/>
-                    <h3 style={{textAlign: 'center'}}>{game.name} </h3>
-                    <p>Metacritic score: {game.metacritic}</p>
+        <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+          {rawgData.results ? (
+            <>{rawgData.results.map(game =>{
+                return(
+                  <div key={game.id} style={style.side} style={style.CardComponent}>
+                    <div onClick={()=>renderSinglePage(game.id)}>
+                      <div style={style.centering}>
+                        <img style={style.ImgComponent} src={game.background_image} height='100px'/>
+                      </div>
+                      <h3 style={{textAlign: 'center', fontFamily: '"Bungee", cursive', color: 'rgb(129, 133, 227)'}}>{game.name} </h3>
+                      <p style={style.centering}>Metacritic score: {game.metacritic || "none"}</p>
+                    </div>
+                    
+                    <button style={style.button, style.centering} onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
+                    <p style={style.list}></p>
                   </div>
-                  
-                  <button onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
-                  <p style={style.list}></p>
-                </div>
-              )
-            })
+                )
+              })
+            }
+            </>
+          ) : <p style={style.noResults}>no results...yet</p>
           }
-          </>
-        ) : <p style={style.noResults}>no results...yet</p>
-        }
-        
+        </div>
       
     </>
   )
