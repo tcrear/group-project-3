@@ -9,7 +9,9 @@ function GameCards(props) {
     CardComponent:{
       margin: "10px",
       minWidth: "500px",
-      height: "450px"
+      height: "450px",
+      background: "#d7d7d7",
+      color: "#0a58ca"
     },
     ImgComponent:{
       height: "50%",

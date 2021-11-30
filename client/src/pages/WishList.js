@@ -54,11 +54,11 @@ function WishList() {
       outline: "black 1px solid"
     }
   }
-// how card aligns with page
+  
   return (
     <div>
       <h1>Video game wishlist</h1>
-      <CardGroup>
+      <CardGroup style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
         { wishItems.map( wish =>
         (
           <WishListCard

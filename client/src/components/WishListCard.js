@@ -7,14 +7,29 @@ import checkoff from './images/check-mark.png';
 
 function WishListCard(props) {
 
- 
-  // individual card look
+  const style = {
+    CardComponent:{
+      margin: "10px",
+      minWidth: "500px",
+      height: "450px",
+      background: "#d7d7d7",
+      color: "#0a58ca"
+    },
+    ImgComponent:{
+      height: "50%",
+      width: "50%",
+      margin: "0 auto"
+    },
+    textTitle:{
+      textAlign: "center"
+    }
+  }
 
   return (
-    <Card>
-      <Card.Img variant="top" src={props.wish.background_image || noImage} height='100px' />
+    <Card style={style.CardComponent}>
+      <Card.Img variant="top" src={props.wish.background_image || noImage} height='100px' style={style.ImgComponent}/>
       <Card.Body>
-        <Card.Title>{props.wish.title}</Card.Title>
+        <Card.Title style={style.textTitle}>{props.wish.title}</Card.Title>
       </Card.Body>
       <Card.Footer>
         <a onClick={() => props.setGameToPlayed(props.wish)}><img src={checkoff} height="10px" alt="move to mygames"/></a>

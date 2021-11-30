@@ -41,13 +41,6 @@ function GameList() {
     console.log("id")
   };
   
-  // const style = {
-  //   CardComponent:{
-  //     margin: "10px",
-  //     display: "flex",
-  //     flexWrap: "wrap",
-  //   }
-  // }
 
   return (
     <div>
@@ -58,7 +51,6 @@ function GameList() {
           <MyGamesCard
             key={gameItem._id}
             gameItem={gameItem}
-            // playedGameItem={playedGameItem}
             removeGameListItem={removeGameListItem}
           />
         )
