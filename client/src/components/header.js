@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import "../css/header.css";
-import logo from "./images/bookshelf128.png";
+import logo from "./images/videogames.png";
 import Auth from '../utils/auth';
 
 const Header = () => {

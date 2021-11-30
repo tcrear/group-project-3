@@ -1,6 +1,8 @@
-import React, {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import noImage from './images/no_image.jpg'
+import xmark from './images/x-mark.png';
+import checkoff from './images/check-mark.png';
+
 
 function WishListCard(props) {
   return (
@@ -10,8 +12,8 @@ function WishListCard(props) {
         <Card.Title>{props.wish.title}</Card.Title>
       </Card.Body>
       <Card.Footer>
-        <button className="btn btn-sm" onClick={() => props.setGameToPlayed(props.wish)}>Mark This Game As Played</button>
-          <button className="btn btn-sm" onClick={() => props.removeWishListItem(props.wish)}>Remove This Game</button>
+        <a onClick={() => props.setGameToPlayed(props.wish)}><img src={checkoff} height="10px" alt="move to mygames"/></a>
+        <a onClick={() => props.removeWishListItem(props.wish)}><img src={xmark} height='10px' alt="remove item"/></a>
       </Card.Footer>
     </Card>
   );
