@@ -7,11 +7,7 @@ import checkoff from './images/check-mark.png';
 
 function WishListCard(props) {
 
-  const style = {
-    body:{
-      color: "blue"
-    }
-  }
+ 
   // individual card look
 
   return (

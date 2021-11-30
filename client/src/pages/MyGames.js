@@ -40,11 +40,19 @@ function GameList() {
 
     console.log("id")
   };
+  
+  // const style = {
+  //   CardComponent:{
+  //     margin: "10px",
+  //     display: "flex",
+  //     flexWrap: "wrap",
+  //   }
+  // }
 
   return (
     <div>
       <h1>My Games List</h1>
-      <CardGroup>
+      <CardGroup style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
         { gameItems.map( gameItem => 
         (
           <MyGamesCard
