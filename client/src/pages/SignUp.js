@@ -38,9 +38,18 @@ const SignUpForm = () => {
     });
   };
 
+  const style={
+    form:{
+      margin: "auto",
+      textAlign: "center",
+      padding: "20px",
+      width: "100vh"
+    }
+  }
+
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form style={style.form} noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your SignUp credentials!
         </Alert>
