@@ -1,67 +1,69 @@
 import react, {useState, useEffect} from 'react';
 import { getGames } from '../utils/api';
+import { updateGame } from '../utils/api';
+import { deleteGame } from '../utils/api'
+import CardGroup from 'react-bootstrap/CardGroup'
 import WishListCard from '../components/WishListCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Auth from '../utils/auth';
+
 
 function WishList() {
-  const [wish, setWish] = useState([]);
+  const [wishItems, setWishItems] = useState([]);
+
   useEffect(() => {
-    console.log(JSON.stringify(getGames()))
+    getWishListData()
   })
-  const addWishListItem = (item) => {
-    console.log(
-      'added item I think??',
-      item
-    );
+  
+  const getWishListData = async() => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!item.text) {
-      return;
-    }
+    const response = await getGames(token)
+    const {wishList} = await response.json()
+    setWishItems(wishList)
 
-    const newWish = [item, ...wish];
-    console.log(newWish);
+  }
 
-    setWish(newWish);
+
+  const setGameToPlayed = (wish) => {
+    const userId = Auth.getProfile().data._id
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    wish = {...wish, onWishList: true}
+    console.log(token)
+    updateGame(token, wish, userId)
+
+    console.log("id")
   };
 
-  const playedGameItem = (id) => {
-    // let updatedWishList = wish.map((item) => {
-    //   if (item.id === id) {
-    //     item.isComplete - !item.isComplete;
-    //   }
-    //   return item;
-    // });
+  // Removes a game from the wishlist
+  const removeWishListItem = (wish) => {
+    const userId = Auth.getProfile().data._id
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // console.log(updatedWishList);
-    // setWish(updatedWishList);
+    console.log(wish.rawgId)
+    wish = {rawgId: wish.rawgId, onWishList: true}
+    console.log(token)
+    deleteGame(token, wish, userId)
+
+    console.log("id")
   };
-
-  const removeWishListItem = (id) => {
-    const updatedWishList = [...wish].filter((item) => item.id !== id);
-
-    setWish(updatedWishList);
-  };
-
-  const editWishListItem = (itemId, newValue) => {
-    if (!newValue.text) {
-      return;
-    }
-
-    setWish((prev) =>
-    prev.map((item) => (item.id === itemId ? newValue : item))
-    );
-  };
-
+  
   return (
     <div>
       <h1>Video game wishlist</h1>
-      <WishListCard
-        wish={wish}
-        onSubmit={addWishListItem}
-        playedGameItem={playedGameItem}
-        removeWishListItem={removeWishListItem}
-        editWishListItem={editWishListItem}
-      ></WishListCard>
+      <CardGroup>
+        { wishItems.map( wish =>
+        (
+          <WishListCard
+            key={wish._id}
+            wish={wish}
+            setGameToPlayed={setGameToPlayed}
+            removeWishListItem={removeWishListItem}
+          />
+        )
+        )}
+      </CardGroup>
     </div>
   );
 }

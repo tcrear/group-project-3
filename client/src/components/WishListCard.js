@@ -1,29 +1,22 @@
-import React, {useState} from 'react';
-import Card from 'react-bootstrap/Card'
-import CardGroup from 'react-bootstrap/CardGroup'
+import Card from 'react-bootstrap/Card';
+import noImage from './images/no_image.jpg'
+import xmark from './images/x-mark.png';
+import checkoff from './images/check-mark.png';
+
 
 function WishListCard(props) {
-  const [edit, setEdit] = useState({
-    title: '',
-    text: '',
-    date: ''
-  });
   return (
-    <CardGroup>
-  <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
-    <Card.Body>
-      <Card.Title>{props.title}</Card.Title>
-      <Card.Text>
-       {props.text}
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer>
-      <small className="text-muted">{props.date}</small>
-    </Card.Footer>
-  </Card>
-</CardGroup>
-  )
+    <Card>
+      <Card.Img variant="top" src={props.wish.background_image || noImage} height='100px' />
+      <Card.Body>
+        <Card.Title>{props.wish.title}</Card.Title>
+      </Card.Body>
+      <Card.Footer>
+        <a onClick={() => props.setGameToPlayed(props.wish)}><img src={checkoff} height="10px" alt="move to mygames"/></a>
+        <a onClick={() => props.removeWishListItem(props.wish)}><img src={xmark} height='10px' alt="remove item"/></a>
+      </Card.Footer>
+    </Card>
+  );
 }
 
 export default WishListCard;

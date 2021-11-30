@@ -24,8 +24,8 @@ export const createUser = (userData) => { //userData -> username, email, passwor
   })
 };
 
-export const getGames = (token) => {  
-  return fetch('http://localhost:3001/api/game/:id', {
+export const getGames = (token, userId) => {  
+  return fetch(`http://localhost:3001/api/game/${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -37,8 +37,8 @@ export const getGames = (token) => {
   })
 };
 
-export const addGame = (token, gameData) => {  //gameData -> rawgId, title, onWishList
-  return fetch('http://localhost:3001/api/game/:id', {
+export const addGame = (token, gameData, userId) => {  //gameData -> rawgId, title, onWishList
+  return fetch(`http://localhost:3001/api/game/${userId}`, {
     method: 'POST',
     body: JSON.stringify(gameData),
     headers: {
@@ -51,8 +51,8 @@ export const addGame = (token, gameData) => {  //gameData -> rawgId, title, onWi
   })
 };
 
-export const updateGame = (token, gameData) => {  //gameData -> rawgId, title, onWishList
-  return fetch('http://localhost:3001/api/game/:id', {
+export const updateGame = (token, gameData, userId) => {  //gameData -> rawgId, title, onWishList
+  return fetch(`http://localhost:3001/api/game/${userId}`, {
     method: 'PUT',
     body: JSON.stringify(gameData),
     headers: {
@@ -65,8 +65,8 @@ export const updateGame = (token, gameData) => {  //gameData -> rawgId, title, o
   })
 };
 
-export const deleteGame = (token, gameData) => {  //gameData -> rawgId, onWishList
-  return fetch('http://localhost:3001/api/game/:id', {
+export const deleteGame = (token, gameData, userId) => {  //gameData -> rawgId, onWishList
+  return fetch(`http://localhost:3001/api/game/${userId}`, {
     method: 'DELETE',
     body: JSON.stringify(gameData),
     headers: {

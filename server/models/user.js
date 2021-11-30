@@ -26,11 +26,13 @@ const UserSchema = new Schema({
   savedGames: [{
     rawgId: Number,
     title: String,
+    background_image: String
   }],
 
   wishList: [{
     rawgId: Number,
     title: String,
+    background_image: String
   }],
 
   userCreated: {

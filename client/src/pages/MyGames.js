@@ -1,69 +1,64 @@
 import react, {useState, useEffect} from 'react';
-import MyGamesCard from '../components/MyGamesCard';
-import {getGames} from '../utils/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { getGames } from '../utils/api';
+import { updateGame } from '../utils/api';
+import { deleteGame } from '../utils/api'
+import CardGroup from 'react-bootstrap/CardGroup'
+import MyGamesCard from '../components/MyGamesCard'
+import Auth from '../utils/auth';
+
 
 function GameList() {
-  const [game, setGame] = useState([]);
+  const [gameItems, setGame] = useState([]);
+
   useEffect(() => {
-    console.log(JSON.stringify(getGames()))
+    getSavedGamesData()
   })
-  const addGameListItem = (item) => {
-    console.log(
-      'added item I think??',
-      item
-    );
+  
+  const getSavedGamesData = async() => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!item.text) {
-      return;
-    }
+    const response = await getGames(token)
+    const {savedGames} = await response.json()
+    setGame(savedGames)
 
-    const newGame = [item, ...game];
-    console.log(newGame);
-
-    setGame(newGame);
-  };
+  }
 
   const playedGameItem = (id) => {
-    // let updatedGameList = game.map((item) => {
-    //   if (item.id === id) {
-    //     item.isComplete - !item.isComplete;
-    //   }
-    //   return item;
-    // });
+    // Played games to set a different background to signify
 
-    // console.log(updatedGameList);
-    // setGame(updatedGameList);
   };
 
-  const removeGameListItem = (id) => {
-    const updatedGameList = [...game].filter((item) => item.id !== id);
+  const removeGameListItem = (savedGame) => {
+    const userId = Auth.getProfile().data._id
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    setGame(updatedGameList);
-  };
+    console.log(savedGame)
+    savedGame = {rawgId: savedGame, onWishList: false}
+    console.log(token)
+    deleteGame(token, savedGame, userId)
 
-  const editGameListItem = (itemId, newValue) => {
-    if (!newValue.text) {
-      return;
-    }
-
-    setGame((prev) =>
-    prev.map((item) => (item.id === itemId ? newValue : item))
-    );
+    console.log("id")
   };
 
   return (
     <div>
       <h1>My Games List</h1>
-      <div
-        game={game}
-        onSubmit={addGameListItem}
-        playedGameItem={playedGameItem}
-        removeGameListItem={removeGameListItem}
-        editGameListItem={editGameListItem}
-      ></div>
+      <CardGroup>
+        { gameItems.map( gameItem => 
+        (
+          <MyGamesCard
+            key={gameItem._id}
+            gameItem={gameItem}
+            // playedGameItem={playedGameItem}
+            removeGameListItem={removeGameListItem}
+          />
+        )
+        )}
+      </CardGroup>
     </div>
   );
 }
 
 export default GameList;
+

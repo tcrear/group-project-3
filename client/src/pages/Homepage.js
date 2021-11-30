@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getGames } from '../utils/api';
+import { addGame } from '../utils/api';
 import Auth from '../utils/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -8,6 +8,7 @@ function Homepage(){
   const [renderReady, setRenderReady] = useState(false);
   const [successfullLogin, setSuccessfullLogin] = useState(false);
   const [userData, setUserData] = useState({});
+  const [ rawgData, setRawgData ] = useState([]);
  
   const getUserData = async() => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -16,46 +17,16 @@ function Homepage(){
     }
 
     const response = await Auth.getProfile(token)
-
-    const user = await response;
-    setUserData(user.data)
-    console.log(userData)
-  }
-
-  const getUserGames = async() => {
-    try {
-      const token = Auth.loggedIn() ? Auth.getToken() : null;
-      if(!token) {
-        setSavedGames(null);
-        setWishList(null);
-        return setRenderReady(true);
-      }
-
-      const response = await getGames(token);
-      if(!response.ok) {
-        setUserData(null);
-        return setRenderReady(true);
-      }
-
-      const games = await response.json();
-      console.log(games)
-      setSavedGames(games.savedGames);
-      setWishList(games.wishList);
-      setRenderReady(true);
-      console.log(savedGames)
-      console.log(wishList)
-
-    } catch (err) {
-      console.error(err)
-    }
+    setUserData(response)
+    setRenderReady(true)
+    setSuccessfullLogin(true)
   }
 
   useEffect(() => {
-    // getUserGames()
     getUserData()
   }, [])
 
-  let getGames = function (user) {
+  let getRawgGames = function (user) {
     let apiUrl = `https://api.rawg.io/api/games?key=1cbc00cd5769401bbb4edd748b66b08c&dates=2019-09-01,2019-09-30&search=${search}`;
   
     fetch(apiUrl)
@@ -63,6 +34,7 @@ function Homepage(){
             if (res.ok){
                 res.json().then(function(data){
                     console.log(data)
+                    setRawgData(data)
                 })
             }
         })
@@ -78,14 +50,34 @@ function Homepage(){
 
   const handleSubmit = (e)=>{
     e.preventDefault();
-    getGames()
+    getRawgGames()
     console.log(search)
+  }
+  const renderSinglePage= (rawgId)=>{
+    window.location.assign(`/SingleGame/${rawgId}`)
+
+  }
+
+  const addToWishList = (rawgId, gameName, background_image) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    const gameData = {
+      rawgId,
+      title: gameName,
+      background_image,
+      onWishList: true
+    };
+    const userId = Auth.getProfile().data._id;
+
+    addGame(token, gameData, userId)
+    //add style change to show it is added
+    console.log('added to wishlist')
   }
 
   return(
     <>
       {renderReady && (
         <>
+ tammie-homepage
         { userData ? (
           <>
           <h3>You aren't Logged in</h3>
@@ -94,6 +86,7 @@ function Homepage(){
           <>
           <h3>You are logged in</h3>
           <p>Hello, {userData.username}</p>
+
           </>
         )}
         </>
@@ -104,6 +97,27 @@ function Homepage(){
                 <button type='submit' onClick={handleSubmit}>Search</button>
             </form>
         </div>
+        {rawgData.results ? (
+          <>{rawgData.results.map(game =>{
+              return(
+                <div key={game.id}>
+                  <div onClick={()=>renderSinglePage(game.id)}>
+                    <img src={game.background_image} height='100px'/>
+                    <h3>{game.name}</h3>
+                    <p>metacritic score:{game.metacritic}</p>
+                  </div>
+                  
+                  <button onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
+
+                </div>
+              )
+            })
+          }
+          </>
+        ) : <p>no results...yet</p>
+        }
+        
+      
     </>
   )
 };
