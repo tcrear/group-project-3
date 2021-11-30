@@ -49,11 +49,6 @@ function WishList() {
     console.log("id")
   };
   
-  const style = {
-    form:{
-      outline: "black 1px solid"
-    }
-  }
   
   return (
     <div>

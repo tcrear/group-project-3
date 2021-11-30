@@ -10,8 +10,9 @@ function GameCards(props) {
       margin: "10px",
       minWidth: "500px",
       height: "450px",
-      background: "#d7d7d7",
-      color: "#0a58ca"
+      background: "#E38185",
+      color: "#0a58ca",
+      boxShadow: "rgba(49, 49, 49, 49) 4px 4px 4px 4px"
     },
     ImgComponent:{
       height: "50%",
@@ -23,8 +24,6 @@ function GameCards(props) {
     }
   }
 
-  
-  
   return (
     <Card style={style.CardComponent}>
       <Card.Img variant="top" src={props.gameItem.background_image} style={style.ImgComponent}/>
