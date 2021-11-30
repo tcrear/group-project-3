@@ -3,6 +3,40 @@ import { addGame } from '../utils/api';
 import Auth from '../utils/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const style = {
+  search: {
+    margin: "auto",
+    textAlign: "center",
+    padding: "20px",
+    width: "100vh",
+  },
+  noResults: {
+    textAlign: "center",
+  },
+  list: {
+    paddingBottom: "10px",
+  },
+  side: {
+    marginLeft: "center",
+  },
+  CardComponent:{
+    margin: "10px",
+    minWidth: "500px",
+    height: "450px",
+    background: "#E38185",
+    color: "#0a58ca",
+    boxShadow: "rgba(49, 49, 49, 49) 4px 4px 4px 4px",
+  },
+  ImgComponent:{
+    height: "50%",
+    width: "50%",
+    margin: "0 auto",
+  },
+  textTitle:{
+    textAlign: "center",
+  }
+}
+
 
 function Homepage(){
   const [renderReady, setRenderReady] = useState(false);
@@ -77,7 +111,6 @@ function Homepage(){
     <>
       {renderReady && (
         <>
- tammie-homepage
         { userData ? (
           <>
           <h3>You aren't Logged in</h3>
@@ -92,7 +125,7 @@ function Homepage(){
         </>
       )}
        <div className='search'>
-            <form>
+            <form style={style.search}>
                 <input type='text' value={search} placeholder='search for games' onChange={handleInputChange} name='searchGames'/>
                 <button type='submit' onClick={handleSubmit}>Search</button>
             </form>
@@ -100,21 +133,21 @@ function Homepage(){
         {rawgData.results ? (
           <>{rawgData.results.map(game =>{
               return(
-                <div key={game.id}>
+                <div key={game.id} style={style.side} style={style.CardComponent}>
                   <div onClick={()=>renderSinglePage(game.id)}>
-                    <img src={game.background_image} height='100px'/>
-                    <h3>{game.name}</h3>
-                    <p>metacritic score:{game.metacritic}</p>
+                    <img style={style.ImgComponent} src={game.background_image} height='100px'/>
+                    <h3>{game.name} style={style.textTitle}</h3>
+                    <p>Metacritic score: {game.metacritic}</p>
                   </div>
                   
                   <button onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
-
+                  <p style={style.list}></p>
                 </div>
               )
             })
           }
           </>
-        ) : <p>no results...yet</p>
+        ) : <p style={style.noResults}>no results...yet</p>
         }
         
       
