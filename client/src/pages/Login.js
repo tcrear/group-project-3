@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { loginUser } from '../utils/api';
 import Auth from '../utils/auth';
 
@@ -38,10 +37,18 @@ const LoginForm = () => {
       password: '',
     });
   };
+  const style={
+    form:{
+      margin: "auto",
+      textAlign: "center",
+      padding: "20px",
+      width: "100vh"
+    }
+  }
 
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form style={style.form} noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials!
         </Alert>
