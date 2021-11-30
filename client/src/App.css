@@ -6,13 +6,13 @@ a {
 .content{
   min-height: 100vh;
   height: auto !important;
-  height: 85vh;
+  height: 100vh;
   margin: 0 auto -50px;
   position: relative;
 }
 
 .push, footer{
-  height: 30px !important; 
+  height: 40px !important; 
 }
 
 body{
