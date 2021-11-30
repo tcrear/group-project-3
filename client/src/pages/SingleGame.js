@@ -73,7 +73,7 @@ function SingleGame(props) {
         <div style={style.singleGame}>
           <img src={rawgDetails.background_image} style={style.image}/>
           {console.log(rawgDetails)}
-          <h2>{rawgDetails.name}</h2>
+          <h2 style={{fontFamily: '"Bungee", cursive',}}>{rawgDetails.name}</h2>
 
           <button onClick={() => addToWishList(rawgDetails.id, rawgDetails.name, rawgDetails.background_image)}>Add to Wish List</button>
         </div>
