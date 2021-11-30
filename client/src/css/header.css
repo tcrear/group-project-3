@@ -1,9 +1,4 @@
-.header{
-  display: flex;
-  outline: 1px solid red;
-  align-items: center;
-  justify-content: space-between;
-}
+
 
 .headerLinks{
   display: flex;
