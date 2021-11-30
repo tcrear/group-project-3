@@ -1,15 +1,25 @@
 footer{
-  outline: 1px solid red;
+  position: fixed;
+  bottom: 0;
   display: flex; 
   justify-content: space-around;
-  padding: 10px;
+  align-items: center;
+  padding-top: 10px;
   width: 100%;
+  background-color:rgb(129, 133, 227) ;
 }
 
 .footerCredit {
   font-size: 8px;
   width: fit-content;
-  outline: 1px solid blue;
- 
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: rgb(215, 215, 215);
 }
 
+.footerCredit a {
+  color: black;
+  text-decoration: none;
+}
