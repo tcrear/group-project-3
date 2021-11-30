@@ -1,6 +1,7 @@
 import react, {useState, useEffect} from 'react';
-import MyGamesCard from '../components/MyGamesCard'
+import MyGamesCard from '../components/MyGamesCard';
 import {getGames} from '../utils/api';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function GameList() {
   const [game, setGame] = useState([]);

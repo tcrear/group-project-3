@@ -1,6 +1,7 @@
 import react, {useState, useEffect} from 'react';
 import { getGames } from '../utils/api';
 import WishListCard from '../components/WishListCard';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function WishList() {
   const [wish, setWish] = useState([]);

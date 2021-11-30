@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getGames } from '../utils/api';
 import Auth from '../utils/auth';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function Homepage(){
   const [renderReady, setRenderReady] = useState(false);
