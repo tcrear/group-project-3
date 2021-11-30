@@ -23,14 +23,14 @@ function SingleGame(props) {
     let apiUrl = `https://api.rawg.io/api/games/${rawgId}?key=1cbc00cd5769401bbb4edd748b66b08c&dates=2019-09-01,2019-09-30`;
     
     fetch(apiUrl)
-        .then(function(res){
-            if (res.ok){
-                res.json().then(function(data){
-                    console.log(data)
-                    setRawgDetails(data)
-                })
-            }
-        })
+      .then(function(res){
+        if (res.ok){
+          res.json().then(function(data){
+            console.log(data)
+            setRawgDetails(data)
+          })
+        }
+      })
   };
   
   console.log(rawgDetails)
@@ -95,21 +95,27 @@ function SingleGame(props) {
           <img src={rawgDetails.background_image} style={style.image}/>
           <h2 style={{fontFamily: '"Bungee", cursive',}}>{rawgDetails.name}</h2>
           <p>{rawgDetails.description_raw}</p>
-          <h5>Genres</h5>
-          <div style={style.genreContainer}>
-            {rawgDetails.genres.map((genre)=>{
-              return(
-              <p style={style.genreWords}>{genre.name}</p>
-              )
-            })}
+          <div style={{display: 'flex', justifyContent: 'space-around'}}>
+            <div>
+              <h5>Genres</h5>
+              <div style={style.genreContainer}>
+                {rawgDetails.genres.map((genre)=>{
+                  return(
+                  <p style={style.genreWords}>{genre.name}</p>
+                  )
+                })}
+              </div>
+            </div>
+            <div>
+                <p>Release Date: {rawgDetails.released}</p>
+                <p>Metacritic Score kind of: {rawgDetails.metacritic || "none"}</p>
+            </div>
           </div>
-          <p>Release Date: {rawgDetails.released}</p>
-          <p>Metacritic Score kind of: {rawgDetails.metacritic || "none"}</p>
-          <button style={style.submitBtn} href={rawgDetails.metacritic_url}>More Information</button>
+          <a href={rawgDetails.metacritic_url}><button style={style.submitBtn}>More Information</button></a>
 
           <button style={style.submitBtn} onClick={() => addToWishList(rawgDetails.id, rawgDetails.name, rawgDetails.background_image)}>Add to Wish List</button>
         </div>
-      ) : <p>not ready my dude</p>}
+      ) : <p style={{fontFamily: '"Bungee", cursive',}}>not ready my dude</p>}
     </>
   )
 }

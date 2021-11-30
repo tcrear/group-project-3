@@ -52,7 +52,10 @@ const style = {
     borderRadius: '8px',
     padding: '3px',
     boxShadow: 'rgb(49, 49, 49) 4px 4px 4px',
-    margin: '0 10px'
+    margin: '0 10px',
+    margin: '0 auto', 
+    display: 'flex', 
+    justifyContent: 'center'
   },
   centering: {
     margin: '0 auto', 
@@ -164,12 +167,12 @@ function Homepage(){
                       <p style={style.centering}>Metacritic score: {game.metacritic || "none"}</p>
                     </div>
                     
-                    <button style={style.button, style.centering} onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
+                    <button style={style.button} onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
                     <p style={style.list}></p>
                   </div>
-                )
-              })
-            }
+              )
+            })
+          }
             </>
           ) : <p style={style.noResults}>no results...yet</p>
           }
