@@ -44,7 +44,7 @@ function GameList() {
 
   return (
     <div>
-      <h1>My Games List</h1>
+      <h1 style={{fontFamily: '"Bungee", cursive'}}>My Games</h1>
       <CardGroup style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
         { gameItems.map( gameItem => 
         (
