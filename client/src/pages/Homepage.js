@@ -30,7 +30,6 @@ const style = {
   ImgComponent:{
     height: "50%",
     width: "50%",
-    margin: "0 auto",
   },
   textTitle:{
     textAlign: "center",
@@ -54,6 +53,11 @@ const style = {
     padding: '3px',
     boxShadow: 'rgb(49, 49, 49) 4px 4px 4px',
     margin: '0 10px'
+  },
+  centering: {
+    margin: '0 auto', 
+    display: 'flex', 
+    justifyContent: 'center'
   }
 }
 
@@ -147,26 +151,29 @@ function Homepage(){
                 <button type='submit' style={style.searchButton} onClick={handleSubmit}>Search</button>
             </form>
         </div>
-        {rawgData.results ? (
-          <>{rawgData.results.map(game =>{
-              return(
-                <div key={game.id} style={style.side} style={style.CardComponent}>
-                  <div onClick={()=>renderSinglePage(game.id)}>
-                    <img style={style.ImgComponent} src={game.background_image} height='100px'/>
-                    <h3 style={{textAlign: 'center', fontFamily: '"Bungee", cursive', color: 'rgb(129, 133, 227)'}}>{game.name} </h3>
-                    <p>Metacritic score: {game.metacritic}</p>
+        <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+          {rawgData.results ? (
+            <>{rawgData.results.map(game =>{
+                return(
+                  <div key={game.id} style={style.side} style={style.CardComponent}>
+                    <div onClick={()=>renderSinglePage(game.id)}>
+                      <div style={style.centering}>
+                        <img style={style.ImgComponent} src={game.background_image} height='100px'/>
+                      </div>
+                      <h3 style={{textAlign: 'center', fontFamily: '"Bungee", cursive', color: 'rgb(129, 133, 227)'}}>{game.name} </h3>
+                      <p style={style.centering}>Metacritic score: {game.metacritic || "none"}</p>
+                    </div>
+                    
+                    <button style={style.button, style.centering} onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
+                    <p style={style.list}></p>
                   </div>
-                  
-                  <button style={style.button} onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
-                  <p style={style.list}></p>
-                </div>
-              )
-            })
+                )
+              })
+            }
+            </>
+          ) : <p style={style.noResults}>no results...yet</p>
           }
-          </>
-        ) : <p style={style.noResults}>no results...yet</p>
-        }
-        
+        </div>
       
     </>
   )

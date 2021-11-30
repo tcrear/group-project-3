@@ -66,7 +66,7 @@ function SingleGame(props) {
       width: "auto"
     },
     submitBtn:{
-      marginTop: "20px",
+      margin: "20px 10px",
       boxShadow: "rgb(49, 49, 49) 4px 4px 4px 4px",
       textDecoration: 'none',
       background: "rgb(129, 133, 227)",
@@ -104,8 +104,8 @@ function SingleGame(props) {
             })}
           </div>
           <p>Release Date: {rawgDetails.released}</p>
-          <p>Metacritic Score kind of: {rawgDetails.metacritic}</p>
-          <a href={rawgDetails.metacritic_url}>More Information</a>
+          <p>Metacritic Score kind of: {rawgDetails.metacritic || "none"}</p>
+          <button style={style.submitBtn} href={rawgDetails.metacritic_url}>More Information</button>
 
           <button style={style.submitBtn} onClick={() => addToWishList(rawgDetails.id, rawgDetails.name, rawgDetails.background_image)}>Add to Wish List</button>
         </div>
