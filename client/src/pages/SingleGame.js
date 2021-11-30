@@ -41,7 +41,8 @@ function SingleGame(props) {
     const gameData = {
       rawgId,
       title: gameName,
-      background_image
+      background_image,
+      onWishList: true
     };
     const userId = Auth.getProfile().data._id;
 
@@ -52,14 +53,15 @@ function SingleGame(props) {
  
   return(
     <>
-    {rawgDetails ? (
-    <div>
-      <img src={rawgDetails.background_image} height='500px'/>
-      {console.log(rawgDetails)}
-      <h2>{rawgDetails.name}</h2>
-      <button onClick={() => addToWishList(rawgDetails.id, rawgDetails.name, rawgDetails.background_image)}>Add to Wish List</button>
-    </div>
-    ):<p>not ready my dude</p>}
+      {rawgDetails ? (
+        <div>
+          <img src={rawgDetails.background_image} height='500px'/>
+          {console.log(rawgDetails)}
+          <h2>{rawgDetails.name}</h2>
+
+          <button onClick={() => addToWishList(rawgDetails.id, rawgDetails.name, rawgDetails.background_image)}>Add to Wish List</button>
+        </div>
+      ) : <p>not ready my dude</p>}
     </>
   )
 }

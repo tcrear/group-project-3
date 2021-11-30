@@ -61,7 +61,8 @@ function Homepage(){
     const gameData = {
       rawgId,
       title: gameName,
-      background_image
+      background_image,
+      onWishList: true
     };
     const userId = Auth.getProfile().data._id;
 
@@ -92,19 +93,24 @@ function Homepage(){
             </form>
         </div>
         {rawgData.results ? (
-        <>{rawgData.results.map(game =>{
-          return(
-          <div key={game.id} onClick={()=>renderSinglePage(game.id)}>
-            <img src={game.background_image} height='100px'/>
-            <h3>{game.name}</h3>
-            <p>metacritic score:{game.metacritic}</p>
-            <button onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
+          <>{rawgData.results.map(game =>{
+              return(
+                <div key={game.id} onClick={()=>renderSinglePage(game.id)}>
+                  <div>
+                    <img src={game.background_image} height='100px'/>
+                    <h3>{game.name}</h3>
+                    <p>metacritic score:{game.metacritic}</p>
+                  </div>
+                  
+                  <button onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
 
-          </div>)
-        })}
-        </>)
-        : <p>no results...yet</p>
-      }
+                </div>
+              )
+            })
+          }
+          </>
+        ) : <p>no results...yet</p>
+        }
         
       
     </>
