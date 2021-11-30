@@ -46,6 +46,7 @@ function WishList() {
 
     console.log("id")
   };
+  
   return (
     <div>
       <h1>Video game wishlist</h1>
