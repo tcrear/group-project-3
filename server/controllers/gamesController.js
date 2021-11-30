@@ -1,7 +1,4 @@
 const { User } = require('../models');
-// const withAuth = require("../../utils/auth");
-const { signToken } = require('../utils/auth.js')
-const bcrypt = require('bcrypt')
 
 module.exports = {
  
@@ -18,7 +15,6 @@ module.exports = {
   async addNewGame (req, res) {
     try {
       let addedGame;
-      //req body expected to have id (rawgid), title, onWishList true/false
       if(req.body.onWishList){
         addedGame = await User.update(
           {_id: req.params.id}, 
@@ -47,7 +43,6 @@ module.exports = {
       let addedGame;
       //req body expected to have id (rawgid), title, onWishList true/false
       if(req.body.onWishList){
-        console.log('---------------------move to saved games------------')
         addedGame = await User.findOneAndUpdate(
           {_id: req.params.id}, 
           {$push: {savedGames: req.body}},
@@ -59,7 +54,6 @@ module.exports = {
           { new: true }
           )
       } else {
-        console.log('-------------------moved to wishlist ------------------')
         addedGame = await User.findOneAndUpdate(
           {_id: req.params.id},
           {$push: {wishList: req.body}},
@@ -84,15 +78,12 @@ module.exports = {
       let deletedGame;
       //req body expected to have id (rawgid), onWishList true/false
       if(req.body.onWishList){
-        console.log('-----------------delete from wishlist---------------')
-        console.log(req.params.id, req.body.rawgId)
         deletedGame = await User.findOneAndUpdate(
           {_id: req.params.id}, 
           {$pull: {wishList: {rawgId: req.body.rawgId}}},
           { new: true }
           )
       } else {
-        console.log('-----------------delete from saved game---------------')
 
         deletedGame = await User.findOneAndUpdate(
           {_id: req.params.id}, 
@@ -100,7 +91,6 @@ module.exports = {
           { new: true }
           )
       }
-      console.log(deletedGame)
       res.json(deletedGame)
     } catch (err){
       res.status(400).json(err)
