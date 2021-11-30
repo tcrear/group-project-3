@@ -33,6 +33,16 @@ const style = {
   },
   textTitle:{
     textAlign: "center",
+  },
+  button: {
+    textDecoration: 'none',
+      background: "rgb(215, 215, 215)",
+      color: 'rgb(129, 133, 227)',
+      fontWeight: 'bold',
+      borderRadius: '8px',
+      padding: '3px',
+      boxShadow: 'rgb(49, 49, 49) 4px 4px 4px',
+      fontFamily: '"Bungee", cursive'
   }
 }
 
@@ -137,7 +147,7 @@ function Homepage(){
                     <p>Metacritic score: {game.metacritic}</p>
                   </div>
                   
-                  <button onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
+                  <button style={style.button} onClick={() => addToWishList(game.id, game.name, game.background_image)}>Add to Wish List</button>
                   <p style={style.list}></p>
                 </div>
               )
