@@ -47,6 +47,12 @@ function WishList() {
     console.log("id")
   };
   
+  const style = {
+    form:{
+      outline: "black 1px solid"
+    }
+  }
+// how card aligns with page
   return (
     <div>
       <h1>Video game wishlist</h1>
@@ -60,7 +66,7 @@ function WishList() {
             removeWishListItem={removeWishListItem}
           />
         )
-        )}
+        )} 
       </CardGroup>
     </div>
   );

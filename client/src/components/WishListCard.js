@@ -1,8 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import noImage from './images/no_image.jpg'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function WishListCard(props) {
+
+  const style = {
+    body:{
+      color: "blue"
+    }
+  }
+  // individual card look
+
   return (
     <Card>
       <Card.Img variant="top" src={props.wish.background_image || noImage} height='100px' />
@@ -16,6 +25,5 @@ function WishListCard(props) {
     </Card>
   );
 }
-
 export default WishListCard;
 
