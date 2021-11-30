@@ -51,7 +51,16 @@ const LoginForm = () => {
 
     submitBtn:{
       marginTop: "20px",
-      boxShadow: "rgb(49, 49, 49) 4px 4px 4px 4px"
+      boxShadow: "rgb(49, 49, 49) 4px 4px 4px 4px",
+      textDecoration: 'none',
+      background: "rgb(129, 133, 227)",
+      color: 'rgb(215, 215, 215)',
+      fontWeight: 'bold',
+      borderRadius: '8px',
+      padding: '3px',
+      boxShadow: 'rgb(49, 49, 49) 4px 4px 4px',
+      fontFamily: '"Bungee", cursive',
+      border: "black 2px"
     }
   }
 
