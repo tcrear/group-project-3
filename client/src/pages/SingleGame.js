@@ -1,10 +1,11 @@
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState, useEffect} from 'react'
-// import Card from 'react-bootstrap/Card'
-// import CardGroup from 'react-bootstrap/CardGroup'
+import Card from 'react-bootstrap/Card'
+import CardGroup from 'react-bootstrap/CardGroup'
 import {useParams} from 'react-router-dom'
 import { addGame } from '../utils/api';
 import Auth from '../utils/auth';
-
 
 function SingleGame(props) {
  const [rawgDetails, setRawgDetails]= useState();

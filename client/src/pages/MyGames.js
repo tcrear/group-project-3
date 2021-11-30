@@ -1,10 +1,12 @@
 import react, {useState, useEffect} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { getGames } from '../utils/api';
 import { updateGame } from '../utils/api';
 import { deleteGame } from '../utils/api'
 import CardGroup from 'react-bootstrap/CardGroup'
 import MyGamesCard from '../components/MyGamesCard'
 import Auth from '../utils/auth';
+
 
 function GameList() {
   const [gameItems, setGame] = useState([]);
