@@ -30,6 +30,7 @@ function SingleGame(props) {
             }
         })
   };
+  
   console.log(rawgDetails)
   useEffect(() => {
     getDetails(id)
