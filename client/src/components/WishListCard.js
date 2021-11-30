@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card';
+import noImage from './images/no_image.jpg'
 
 function WishListCard(props) {
-
   return (
     <Card>
-        <Card.Img variant="top" src="holder.js/100px160" />
+        <Card.Img variant="top" src={props.wish.background_image || noImage} height='100px'/>
         <Card.Body>
           <Card.Title>
            {props.wish.title}
