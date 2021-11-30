@@ -105,7 +105,6 @@ function Homepage(){
   const handleInputChange= (e)=>{
     const {name, value}= e.target;
     setSearch(value)
-    console.log(search)
   }
 
   const handleSubmit = (e)=>{
