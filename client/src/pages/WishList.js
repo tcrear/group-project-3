@@ -4,7 +4,9 @@ import { updateGame } from '../utils/api';
 import { deleteGame } from '../utils/api'
 import CardGroup from 'react-bootstrap/CardGroup'
 import WishListCard from '../components/WishListCard';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Auth from '../utils/auth';
+
 
 function WishList() {
   const [wishItems, setWishItems] = useState([]);

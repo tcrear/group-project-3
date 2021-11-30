@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { addGame } from '../utils/api';
 import Auth from '../utils/auth';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function Homepage(){
   const [renderReady, setRenderReady] = useState(false);
@@ -75,13 +77,16 @@ function Homepage(){
     <>
       {renderReady && (
         <>
-        { successfullLogin ? (
-         <>
-         <h3>Hello, {userData.data.username}</h3>
-         </>
+ tammie-homepage
+        { userData ? (
+          <>
+          <h3>You aren't Logged in</h3>
+          </>
         ) : (
           <>
-          <h3>You are not Logged in</h3>
+          <h3>You are logged in</h3>
+          <p>Hello, {userData.username}</p>
+
           </>
         )}
         </>
