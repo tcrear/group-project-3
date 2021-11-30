@@ -40,17 +40,17 @@ function GameList() {
 
     console.log("id")
   };
+  
 
   return (
     <div>
       <h1>My Games List</h1>
-      <CardGroup>
+      <CardGroup style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
         { gameItems.map( gameItem => 
         (
           <MyGamesCard
             key={gameItem._id}
             gameItem={gameItem}
-            // playedGameItem={playedGameItem}
             removeGameListItem={removeGameListItem}
           />
         )

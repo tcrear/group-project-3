@@ -49,10 +49,16 @@ function WishList() {
     console.log("id")
   };
   
+  const style = {
+    form:{
+      outline: "black 1px solid"
+    }
+  }
+  
   return (
     <div>
       <h1>Video game wishlist</h1>
-      <CardGroup>
+      <CardGroup style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
         { wishItems.map( wish =>
         (
           <WishListCard
@@ -62,7 +68,7 @@ function WishList() {
             removeWishListItem={removeWishListItem}
           />
         )
-        )}
+        )} 
       </CardGroup>
     </div>
   );
