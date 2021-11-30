@@ -4,3 +4,7 @@
 html, body {
   height: 100%;
 }
+
+#root{
+  background-color: rgb(215,215,215);
+}
