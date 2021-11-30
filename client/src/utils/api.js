@@ -24,8 +24,8 @@ export const createUser = (userData) => { //userData -> username, email, passwor
   })
 };
 
-export const getGames = (token) => {  
-  return fetch('http://localhost:3001/api/game/:id', {
+export const getGames = (token, userId) => {  
+  return fetch(`http://localhost:3001/api/game/${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -37,8 +37,8 @@ export const getGames = (token) => {
   })
 };
 
-export const addGame = (token, gameData) => {  //gameData -> rawgId, title, onWishList
-  return fetch('http://localhost:3001/api/game/:id', {
+export const addGame = (token, gameData, userId) => {  //gameData -> rawgId, title, onWishList
+  return fetch(`http://localhost:3001/api/game/${userId}`, {
     method: 'POST',
     body: JSON.stringify(gameData),
     headers: {
