@@ -5,7 +5,6 @@ import {useParams} from 'react-router-dom'
 import { addGame } from '../utils/api';
 import Auth from '../utils/auth';
 
-
 function SingleGame(props) {
  const [rawgDetails, setRawgDetails]= useState();
   // const title = 'Game Title'
@@ -49,13 +48,27 @@ function SingleGame(props) {
     addGame(token, gameData, userId)
     //add style change to show it is added
     console.log('added to wishlist')
+
+  } 
+
+  const style = {
+    singleGame : {
+      paddingTop:"100px",
+      height: "100vh",
+      textAlign:"center",
+      backgroundColor: "lightGrey"
+    },
+    image : {
+      height: "400px",
+      width: "auto"
+    }
   }
- 
+
   return(
     <>
       {rawgDetails ? (
-        <div>
-          <img src={rawgDetails.background_image} height='500px'/>
+        <div style={style.singleGame}>
+          <img src={rawgDetails.background_image} style={style.image}/>
           {console.log(rawgDetails)}
           <h2>{rawgDetails.name}</h2>
 
