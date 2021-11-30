@@ -51,7 +51,7 @@ function Homepage(){
     }
 
     const response = await Auth.getProfile(token)
-    setUserData(response)
+    setUserData(response.data)
     setRenderReady(true)
     setSuccessfullLogin(true)
   }
@@ -67,7 +67,6 @@ function Homepage(){
         .then(function(res){
             if (res.ok){
                 res.json().then(function(data){
-                    console.log(data)
                     setRawgData(data)
                 })
             }
@@ -111,15 +110,13 @@ function Homepage(){
     <>
       {renderReady && (
         <>
-        { userData ? (
+        { successfullLogin ? (
           <>
-          <h3>You aren't Logged in</h3>
+          <h3 style={{fontFamily: '"Bungee", cursive'}}>Hello, {userData.username}</h3>
           </>
         ) : (
           <>
-          <h3>You are logged in</h3>
-          <p>Hello, {userData.username}</p>
-
+          <h3>You aren't Logged in</h3>
           </>
         )}
         </>
@@ -132,11 +129,12 @@ function Homepage(){
         </div>
         {rawgData.results ? (
           <>{rawgData.results.map(game =>{
+            console.log(game)
               return(
                 <div key={game.id} style={style.side} style={style.CardComponent}>
                   <div onClick={()=>renderSinglePage(game.id)}>
                     <img style={style.ImgComponent} src={game.background_image} height='100px'/>
-                    <h3>{game.name} style={style.textTitle}</h3>
+                    <h3 style={{textAlign: 'center'}}>{game.name} </h3>
                     <p>Metacritic score: {game.metacritic}</p>
                   </div>
                   
