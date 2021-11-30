@@ -86,11 +86,11 @@ function Homepage(){
         <>
         { userData ? (
           <>
-          <h3>You arent Logged in</h3>
+          <h3>You aren't Logged in</h3>
           </>
         ) : (
           <>
-          <h3> you are logged in</h3>
+          <h3>You are logged in</h3>
           <p>Hello, {userData.username}</p>
           </>
         )}
