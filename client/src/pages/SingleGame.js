@@ -8,15 +8,16 @@ import { addGame } from '../utils/api';
 import Auth from '../utils/auth';
 
 function SingleGame(props) {
- const [rawgDetails, setRawgDetails]= useState();
-  // const title = 'Game Title'
-  // const rating = '3.75'
-  // const genres = [1,2,4]
-  // const released = '2021-12-08'
-  // const esrb_rating = 'E'
-// console.log(props)
+  const [rawgDetails, setRawgDetails]= useState();
+  const [loggedIn, setLoggedIn] = useState(false);
   const {id}= useParams()
-  console.log(id)
+
+  const getLoggedIn = () => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if(token){
+      setLoggedIn(true)
+    }
+  }
 
   let getDetails = function (rawgId) {
     
@@ -36,6 +37,7 @@ function SingleGame(props) {
   console.log(rawgDetails)
   useEffect(() => {
     getDetails(id)
+    getLoggedIn()
   }, [])
 
   const addToWishList = (rawgId, gameName, background_image) => {
@@ -112,8 +114,11 @@ function SingleGame(props) {
             </div>
           </div>
           <a href={rawgDetails.metacritic_url}><button style={style.submitBtn}>More Information</button></a>
-
-          <button style={style.submitBtn} onClick={() => addToWishList(rawgDetails.id, rawgDetails.name, rawgDetails.background_image)}>Add to Wish List</button>
+          {loggedIn ? (
+            <button style={style.submitBtn} onClick={() => addToWishList(rawgDetails.id, rawgDetails.name, rawgDetails.background_image)}>Add to Wish List</button>
+          ) : (
+            <p></p>
+          )}
         </div>
       ) : <p style={{fontFamily: '"Bungee", cursive',}}>not ready my dude</p>}
     </>
