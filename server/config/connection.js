@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/catalog', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/catalog', {});
 
 module.exports = mongoose.connection;
