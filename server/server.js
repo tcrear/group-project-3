@@ -13,6 +13,9 @@ app.use(express.json());
 app.use(cors());
 app.use(routes);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/gamerShelfDB", {
   useNewUrlParser: true
@@ -21,3 +24,4 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/gamerShelfDB", 
 app.listen(PORT, function() {
   console.log(`Now listening on port: ${PORT}`);
 });
+
