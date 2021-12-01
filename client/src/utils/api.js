@@ -1,5 +1,5 @@
 export const loginUser = (userData) => { //userData -> email, password
-  return fetch('http://localhost:3001/api/user/login', {
+  return fetch('/api/user/login', {
     method: 'POST',
     body: JSON.stringify(userData),
     headers: {
@@ -12,7 +12,7 @@ export const loginUser = (userData) => { //userData -> email, password
 };
 
 export const createUser = (userData) => { //userData -> username, email, password
-  return fetch('http://localhost:3001/api/user/', {
+  return fetch('/api/user/', {
     method: 'POST',
     body: JSON.stringify(userData),
     headers: {
@@ -25,7 +25,7 @@ export const createUser = (userData) => { //userData -> username, email, passwor
 };
 
 export const getGames = (token, userId) => {  
-  return fetch(`http://localhost:3001/api/game/${userId}`, {
+  return fetch(`/api/game/${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export const getGames = (token, userId) => {
 };
 
 export const addGame = (token, gameData, userId) => {  //gameData -> rawgId, title, onWishList
-  return fetch(`http://localhost:3001/api/game/${userId}`, {
+  return fetch(`/api/game/${userId}`, {
     method: 'POST',
     body: JSON.stringify(gameData),
     headers: {
@@ -52,7 +52,7 @@ export const addGame = (token, gameData, userId) => {  //gameData -> rawgId, tit
 };
 
 export const updateGame = (token, gameData, userId) => {  //gameData -> rawgId, title, onWishList
-  return fetch(`http://localhost:3001/api/game/${userId}`, {
+  return fetch(`/api/game/${userId}`, {
     method: 'PUT',
     body: JSON.stringify(gameData),
     headers: {
@@ -66,7 +66,7 @@ export const updateGame = (token, gameData, userId) => {  //gameData -> rawgId, 
 };
 
 export const deleteGame = (token, gameData, userId) => {  //gameData -> rawgId, onWishList
-  return fetch(`http://localhost:3001/api/game/${userId}`, {
+  return fetch(`/api/game/${userId}`, {
     method: 'DELETE',
     body: JSON.stringify(gameData),
     headers: {
